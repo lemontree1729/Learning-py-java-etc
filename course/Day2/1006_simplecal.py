@@ -1,6 +1,6 @@
 # 20211006 python new four arithmetic operations calculator
 # calculate four arithmetic operations for two values
-# untill user press something else with '0'
+# until user press something else with '0'
 
 
 def cal():
