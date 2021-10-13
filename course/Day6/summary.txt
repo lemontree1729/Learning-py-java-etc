@@ -2,39 +2,28 @@
 
 
 * What I learned(Important) : 
-  - 
-    # 
-  - 
-   1. 
-     # 
-   2. 
-     # 
-  - (file) file_name.extension
-    # 
-
+  - (file) for_loops.py
+    # Learned how to use for loops and range class
+  - (file) while_loops.py
+    # Learned how to use while loops, break and continue
+  - (file) play_turtle.py
+     # Used for loop with turtle module
 
 * What I studied myself :
-  - ~~~~~ (Learning)
-    # 
-  - ~~~~~ (Learned)
-    #
+  - Dijkstra algorithm(Studied)
 
 
 * What I didn't understand : 
-  - 
-  - 
-  - 
 
 
 * What I want to know more : 
-  - ~~~~~ (Solved)
-  - ~~~~~ (Solving)
+  - What is class, type, object? What is different between range, range(), range class?
+  - Order of saving data in memory
+    # Is it different using (if i % 2) and (if i % 2 == 1)?
+  - Regular expression of python 
 
 
 * etc(Additional) : 
-  - 
-  - 
-  - 
 
 
-* Practice problems : file_name1.extension1, file_name2.extension2
+* Practice problems : quiz_grade.py
