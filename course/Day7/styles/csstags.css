@@ -1,0 +1,85 @@
+/* how to use comment */
+/* more information : https://syleemomo.tistory.com/35 */
+
+/* CSS selectors */
+div{ /*1-1. selected by tag */
+    color: tomato;
+}
+
+ul li:nth-child(1){ /*1-2. selected with pseudo-class */
+    background: brown;
+}
+
+input:focus{
+    background: yellow;
+}
+
+p::first-line{ /*1-3. selected with pseudo-element */
+    color: blue;
+    text-transform: uppercase;
+}
+
+p{
+    font-size: 7pt;
+}
+
+#press{ /*2. seleted by id*/
+    all: unset; /* reset default settings */
+    background: skyblue;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#press::before{
+    content: "🔔"
+}
+
+.photo{ /*3. selected by class*/
+    background: turquoise;
+}
+
+div[name="photo-name"]{ /*4. selected by name */
+    background: violet;
+}
+
+#photos{
+    width: 200px;
+    width: 50%;
+    height: 100px;
+    padding: 50px;
+    margin: 100px;
+    border: 5px solid red;
+    border-radius: 50%;
+    background: skyblue;
+    background: rgb(0, 0, 255, 0.25);
+    box-sizing: border-box;
+}
+
+.fonttag p{
+    line-height: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+}
+
+.fonttag{
+    width: 200px;
+    height: 100px;
+    background-image: url('sources/images/cat.jpg');
+}
+
+#parent{
+    width: 200px;
+    height: 200px;
+    background: powderblue;
+}
+
+#child{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: sandybrown;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
