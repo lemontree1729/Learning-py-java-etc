@@ -14,9 +14,9 @@
 
 
 * What I studied myself :
-  - ~~~~~ (Learning)
+  - ~~~~~ (Studying)
     # 
-  - ~~~~~ (Learned)
+  - ~~~~~ (Studied)
     #
 
 
@@ -27,8 +27,8 @@
 
 
 * What I want to know more : 
-  - ~~~~~ (Solved)
   - ~~~~~ (Solving)
+  - ~~~~~ (Solved)
 
 
 * etc(Additional) : 
