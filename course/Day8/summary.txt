@@ -1,0 +1,40 @@
+21/10/15 Python lesson
+
+
+* What I learned(Important) : 
+  - 
+    # 
+  - 
+   1. 
+     # 
+   2. 
+     # 
+  - (file) file_name.extension
+    # 
+
+
+* What I studied myself :
+  - ~~~~~ (Studying)
+    # 
+  - ~~~~~ (Studied)
+    #
+
+
+* What I didn't understand : 
+  - 
+  - 
+  - 
+
+
+* What I want to know more : 
+  - ~~~~~ (Solving)
+  - ~~~~~ (Solved)
+
+
+* etc(Additional) : 
+  - 
+  - 
+  - 
+
+
+* Practice problems : quiz1.py, quiz2.py, quiz3.py
