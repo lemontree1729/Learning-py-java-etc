@@ -2,39 +2,27 @@
 
 
 * What I learned(Important) : 
-  - 
-    # 
-  - 
-   1. 
-     # 
-   2. 
-     # 
-  - (file) file_name.extension
-    # 
+  - (file) quiz1.py
+    # Practiced operators
+  - (file) quiz2.py
+    # Practiced if loop
+  - (file) quiz3.py
+    # Practied if else loop
 
 
 * What I studied myself :
-  - ~~~~~ (Studying)
-    # 
-  - ~~~~~ (Studied)
-    #
+  - regular expression (Studying)
+  - (file) learnfunc.py (Studied)
+    # study about function in Python and Java
 
 
 * What I didn't understand : 
-  - 
-  - 
-  - 
 
 
 * What I want to know more : 
-  - ~~~~~ (Solving)
-  - ~~~~~ (Solved)
 
 
 * etc(Additional) : 
-  - 
-  - 
-  - 
 
 
 * Practice problems : quiz1.py, quiz2.py, quiz3.py
