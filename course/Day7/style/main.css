@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+/*
+    주석 기능
+*/
+body {
+    text-align: center;
+}
+
+img {
+    width: 400px;
+    object-fit: cover
+}
+
+article:nth-of-type(1) {
+    border: 1px solid red;
+}
