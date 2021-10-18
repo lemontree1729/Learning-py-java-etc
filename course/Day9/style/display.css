@@ -1,0 +1,26 @@
+
+.parent{
+    background-color: orange;
+}
+.child{
+    text-align: center;
+    height: 100px;
+    width: 300px;
+    border: 2px solid black;
+}
+.child:nth-of-type(1){
+    background-color: orangered;
+    display: inline;
+}
+.child:nth-of-type(2){
+    background-color: palegreen;
+    display: inline-block;
+}
+.child:nth-of-type(3){
+    background-color: powderblue;
+    display: block;
+}
+.child:nth-of-type(4){
+    background-color: blueviolet;
+    float: left;
+}
