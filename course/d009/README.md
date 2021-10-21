@@ -18,7 +18,6 @@
     <meta name="viewport" content="width=device-width, inital-scale=1.0" />
     ```
 
-  *
   * using @media(media quarry), set max-width as @media (max-width: ???px)
     * [more informations](https://nykim.work/84)
 
