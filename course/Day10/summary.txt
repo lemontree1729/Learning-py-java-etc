@@ -1,0 +1,62 @@
+21/10/19 Java lesson
+
+
+* What I learned(Important) : 
+  - (file) Hello.java
+    # how to print standard output
+  - (file) ScannerEx.java
+    # how to take standard input with scanner
+  - (file) GradingSwitch.java
+    # how to use if else and switch syntax
+    # switch : //
+       switch ( integer, string or char variable) {
+	case integer, string or char literal1:
+	    action code1
+                break
+            case integer, string or char literal2:
+	    action code2
+                break
+	(and more cases)
+	default:
+	    default action code
+      }
+      //
+      * if variable in switch has same value with case literal, it activates all action codes
+        below itself(even default!) until met break
+      * if there is no case matched, just default action code works
+    # not familiar with switch which is not in python
+
+
+* What I studied myself :
+  - java.lang.Math
+    # min, max, pow...
+  - java.util.Arrays (Studied)
+    # sort, reverseOrder, toString...
+  - String
+    # join
+  - while(conditional), for(initial condition; conditional; steps to do)
+
+  - if(conditional) else(conditional)
+    # We could use ? and : replacing if else condition with "conditional ? true progress : false progress"
+
+
+* What I didn't understand : 
+
+
+* What I want to know more : 
+  - Different between int and Integer class (Solving)
+  - what is enum?
+
+
+* etc(Additional) : 
+  - How to format on save in vscode
+    # setting - search format on save
+  - How to format java
+    # press "Ctrl" + ","(open the setting) - click Open Settings(JSON) on Top Right Corner - enter //
+      "[java]": {
+          "editor.defaultFormatter": "redhat.java",
+        },
+      //
+
+
+* Practice problems : 
