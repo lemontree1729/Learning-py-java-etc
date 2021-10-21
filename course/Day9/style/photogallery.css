@@ -55,11 +55,6 @@ body{
     color: white;
     background-color: brown;
 }
-@media (max-width:1023px) {
-    #container ul{
-        
-    }
-}
 @media (max-width:479px) {
     #container ul{
         width: 390px;
