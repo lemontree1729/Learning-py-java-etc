@@ -1,3 +1,5 @@
+package d010;
+
 import java.util.Scanner;
 
 public class GradingSwitch {

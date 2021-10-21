@@ -1,3 +1,5 @@
+package d010;
+
 public class TypeConversion {
     public static void main(String[] args) {
         byte b = 127;
