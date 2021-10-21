@@ -4,13 +4,6 @@
 * What I learned(Important) : 
   - if else statement
     # 
-  - 
-   1. 
-     # 
-   2. 
-     # 
-  - (file) file_name.extension
-    # 
 
 
 * What I studied myself :
@@ -32,9 +25,6 @@
 
 
 * What I didn't understand : 
-  - 
-  - 
-  - 
 
 
 * What I want to know more : 
@@ -42,13 +32,9 @@
     Django(WAS, same as Web Application Server) refer to https://pythonblog.co.kr/blog/61/
       # more exact imformation is in https://jay-ji.tistory.com/66
       # will add Database with(PostgreSQL(ORDBMS) or Mysql(RDBMS))
-  - 
 
 
 * etc(Additional) : 
-  - 
-  - 
-  - 
 
 
-* Practice problems : file_name1.extension1, file_name2.extension2
+* Practice problems : quiz01.java ~ quiz12.java, quiz_img folder
