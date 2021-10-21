@@ -29,7 +29,7 @@
 
 * [making web system](https://pythonblog.co.kr/blog/61/) with Nginx(Web Server), Gunicorn(WSGI, same as Web Server Gateway Interface,
     Django(WAS, same as Web Application Server)
-  * [more imformation with Web server, WSGI, WAS](https://jay-ji.tistory.com/66)
+  * [more imformation for Web server, WSGI, WAS](https://jay-ji.tistory.com/66)
   * will add Database with(PostgreSQL(ORDBMS) or Mysql(RDBMS))
 
 ## etc(Additional)
