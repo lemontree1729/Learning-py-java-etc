@@ -6,10 +6,10 @@
   * inline : act as letter. if you define size more than contents, outer part just goes to padding.
   * inline-block : act as letter. but can define sertain width and height.
   * block : act as full-viewpoint-width box. if you define size, left width just goes to margin.
-  * float : similar with inline-block but cant text-align.
-               you should give margin with child or padding with parent.
-               and parent can't recognize size of float object, you should give overflow: hidden to parent
-    * the exact mechanism is parent don't know exact float child's position
+  * float : similar with inline-block but cant text-align.  
+  you should give margin with child or padding with parent.  
+  and parent can't recognize size of float object, you should give overflow: hidden to parent
+    > the exact mechanism is parent don't know exact float child's position
 * Responsible web
   * Used when we want to match all devices that have different viewpoints.
   * type below in \<head> and it will give you information of device width
@@ -18,7 +18,6 @@
     <meta name="viewport" content="width=device-width, inital-scale=1.0" />
     ```
 
-  *
   * using @media(media quarry), set max-width as @media (max-width: ???px)
     * [more informations](https://nykim.work/84)
 

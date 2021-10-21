@@ -19,7 +19,7 @@
 
 * What is class, type, object? What is different between range, range(), range class?
 * Order of saving data in memory
-  * Is it different using (if i % 2) and (if i % 2 == 1)?
+  * Is it different using `if i % 2` and `if i % 2 == 1`?
 * Regular expression of python
 
 ## etc(Additional)
