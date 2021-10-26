@@ -20,15 +20,15 @@
     * `git remote add $repo-url-nickname$ $repo-url$` (to remove: `git remote remove $repo-url-nickname$`)
     * `git remote -v`
     * `git log --oneline`
-          * we could see `HEAD -> $branch-name$` and `$repo-url-nickname$/$branch-name$`
-          * `$repo-rul-nickname$/$branch-name$` is last log that you pushed to github  
-          * `HEAD -> $branch-name$` is last log that you committed on your local system
-          * between them is logs that you committed and not pushed to github  
+      * we could see `HEAD -> $branch-name$` and `$repo-url-nickname$/$branch-name$`
+      * `$repo-rul-nickname$/$branch-name$` is last log that you pushed to github  
+      * `HEAD -> $branch-name$` is last log that you committed on your local system
+      * between them is logs that you committed and not pushed to github  
     * `git push $repo-url-nickname$ $branch-name$`
     * login to your github account to push
-          * when you once login github, git automatically save the data with credential
-          * you could see saved data with command `git credential fill` and `url=https://github.com`  
-          * If you want to remove this saved data, go to windows credential  
+      * when you once login github, git automatically save the data with credential
+      * you could see saved data with command `git credential fill` and `url=https://github.com`  
+      * If you want to remove this saved data, go to windows credential  
 
 ### how to make responsive web and navigation bar
 
