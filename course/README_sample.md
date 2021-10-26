@@ -1,4 +1,4 @@
-# 21/10/05 lesson name
+# 21/10/05 $lesson-name$
 
 ## What I learned(Important)
 
