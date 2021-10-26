@@ -9,7 +9,7 @@
         *
     2.
         *
-* [file_name.extension](file_name.extension)
+* [$file-name.extension$]($file-name.extension$)
     *
 
 ## What I studied myself
@@ -43,5 +43,5 @@
 
 ## Practice problems
 
-* [file_name1.extension1](file_name1.extension1)
-* [file_name2.extension2](file_name2.extension2)
+* [$file-name1.extension1$]($file-name1.extension1$)
+* [$file-name2.extension2$]($file-name2.extension2$)
