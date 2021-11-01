@@ -1,4 +1,4 @@
-# 21/10/05 $lesson-name$
+# 21/11/05 $lesson-name$
 
 ## What I learned(Important)
 
@@ -45,3 +45,5 @@
 
 * [$file-name1.extension1$]($file-name1.extension1$)
 * [$file-name2.extension2$]($file-name2.extension2$)
+
+## Useful links
