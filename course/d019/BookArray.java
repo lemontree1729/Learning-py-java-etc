@@ -1,3 +1,5 @@
+package d019;
+
 import java.util.Scanner;
 
 class Book {

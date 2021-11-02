@@ -1,3 +1,5 @@
+package d017;
+
 import java.util.Scanner;
 
 class Exercise5_13 {

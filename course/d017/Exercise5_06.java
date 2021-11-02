@@ -1,3 +1,5 @@
+package d017;
+
 class Exercise5_06 {
     public static void main(String[] args) {
         int[] coinUnit = { 500, 100, 50, 10 };

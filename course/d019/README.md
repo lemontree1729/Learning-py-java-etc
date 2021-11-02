@@ -1,7 +1,7 @@
 # 21/11/01 Java lesson
 
 ## What I learned(Important)
-
+* [What is class?](https://docs.oracle.com/javase/specs/jls/se17/html/jls-8.html)
 * What is class array? ([BookArray.java](BookArray.java))
   *
 * What is reference type and primitive type?

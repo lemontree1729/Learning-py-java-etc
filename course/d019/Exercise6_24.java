@@ -1,3 +1,5 @@
+package d019;
+
 class Exercise6_24 {
     static int abs(int value) {
         if (value >= 0) {

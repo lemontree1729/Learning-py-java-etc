@@ -1,3 +1,5 @@
+package d019;
+
 class MyTv {
     boolean isPowerOn;
     int channel;

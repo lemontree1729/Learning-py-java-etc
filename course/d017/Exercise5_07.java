@@ -1,3 +1,5 @@
+package d017;
+
 class Exercise5_07 {
     public static void main(String[] args) {
         if (args.length != 1) {
