@@ -15,6 +15,22 @@ class Exercise6_20 {
         return arr;
     }
 
+    /*- write "/*-" to indent block comment
+     *
+     *  static int[] shuffle(int[] arr) { <---- why you should use static?
+     *      if(arr == null || arr.length ==0) { <---- using null to check error
+     *          return arr;
+     *      }
+     *      for(int i = 0; i < arr.length; i++) {
+     *          int ri = (Math.randon()*arr.length);
+     *          int temp = arr[i];
+     *          arr[i] = arr[ri];
+     *          arr[ri] = temp;
+     *      }
+     *      return arr;
+     *  }
+     */
+
     public static void main(String[] args) {
         int[] original = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         System.out.println(java.util.Arrays.toString(original));

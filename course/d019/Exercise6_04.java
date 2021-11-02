@@ -28,5 +28,6 @@ class Student {
 
     public float getAverage() {
         return (float) Math.round((kor + eng + math) * 100 / 3.0) / 100;
+        // return (int)(getTotal()*10/3F+0.5F)/10F ??
     }
 }
