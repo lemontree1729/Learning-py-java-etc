@@ -1,3 +1,5 @@
+package d019;
+
 class Exercise6_05 {
     public static void main(String[] args) {
         Students s = new Students("john do", 1, 1, 100, 60, 76);

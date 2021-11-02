@@ -1,3 +1,5 @@
+package d019;
+
 class MyPoint {
     int x;
     int y;

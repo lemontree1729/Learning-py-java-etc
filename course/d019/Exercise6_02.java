@@ -1,3 +1,5 @@
+package d019;
+
 class Exercise6_02 {
     public static void main(String[] args) {
         SutdaCard card1 = new SutdaCard(3, false);

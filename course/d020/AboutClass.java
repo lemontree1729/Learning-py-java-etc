@@ -1,4 +1,4 @@
-package course.d020;
+package d020;
 
 class Hiasdf {
     static void foo() {

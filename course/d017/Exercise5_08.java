@@ -1,3 +1,5 @@
+package d017;
+
 class Exercise5_08 {
     public static void main(String[] args) {
         int[] answer = { 1, 4, 4, 3, 1, 4, 4, 2, 1, 3, 2 };

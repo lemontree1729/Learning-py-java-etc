@@ -1,3 +1,5 @@
+package d019;
+
 class Marine {
     int x = 0, y = 0;
     int hp = 60;

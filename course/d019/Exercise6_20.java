@@ -1,3 +1,5 @@
+package d019;
+
 class Exercise6_20 {
     static int[] shuffle(int[] arr) {
         int a, b, temp, cnt = 0;

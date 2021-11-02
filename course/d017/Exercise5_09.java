@@ -1,3 +1,5 @@
+package d017;
+
 class Exercise5_09 {
     public static void main(String[] args) {
         char[][] star = { { '*', '*', ' ', ' ', ' ' }, { '*', '*', ' ', ' ', ' ' }, { '*', '*', '*', '*', '*' },

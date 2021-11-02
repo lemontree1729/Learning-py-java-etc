@@ -1,3 +1,5 @@
+package d019;
+
 class PlayingCard {
     int kind; // instance variabale
     int num; // instance variabale

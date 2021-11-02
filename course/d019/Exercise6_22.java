@@ -1,3 +1,5 @@
+package d019;
+
 class Exercise6_22 {
     static boolean isNumber(String str) {
         for (int i = 0; i < str.length(); i++) {

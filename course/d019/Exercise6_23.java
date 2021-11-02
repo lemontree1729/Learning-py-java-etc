@@ -1,3 +1,5 @@
+package d019;
+
 class Exercise6_23 {
     static int max(int[] arr) {
         if (arr == null || arr.length == 0) {
