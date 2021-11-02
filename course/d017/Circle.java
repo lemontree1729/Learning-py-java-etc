@@ -1,6 +1,6 @@
 package d017;
 
-public class Circle { // define class name
+class Circle { // define class name
     // declare member variables(instance variable and class variable)
     int radius; // instance variable radius and name
     String name;
