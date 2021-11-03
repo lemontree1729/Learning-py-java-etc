@@ -13,7 +13,9 @@
 ## What I studied myself
 
 ### [Primitive data types](https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.2)
+
 ([easier version](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html))
+
 * byte: 8-bit [signed two's complement integer](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ecomarinesys&logNo=220600191718)(can denote number -2^8 to 2^8-1)
 * short: 16-bit signed two's complement integer
 * int(default type in int): 32-bit signed two's complement integer
@@ -24,7 +26,9 @@
 * char: single 16-bit Unicode character(can represent \u0000(or 0) to \uffff(or 65535))
 
 ### [Type conversion](https://docs.oracle.com/javase/specs/jls/se17/html/jls-5.html))
+
 ([easier version](https://stage-loving-developers.tistory.com/8))
+
 * [Promotion](https://docs.oracle.com/javase/specs/jls/se17/html/jls-5.html#jls-5.1.2)
   * byte(1) < short(2) < int(4) < long(8) < float(4) < double(8)
   * unit is byte(8-bit)
@@ -67,5 +71,5 @@
 
 ## Useful links
 
-https://docs.oracle.com/javase/specs/jls/se17/html/index.html
-https://compscicentral.com/how-does-java-work/
+<https://docs.oracle.com/javase/specs/jls/se17/html/index.html>
+<https://compscicentral.com/how-does-java-work/>

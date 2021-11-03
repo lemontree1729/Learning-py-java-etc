@@ -8,22 +8,30 @@ class Player {
 
     Player() {
         System.out.print("enter the players name>>");
-        Scanner hello = new Scanner(System.in);
         name = sc.next();
     }
 
     String getWordFromUser() {
         System.out.print(name + ">>");
-        return sc.next();
+        String a = sc.next(); // error accurs here on VS code. guess it is because of encoding problem but
+                              // eclipse works fine
+        System.out.println(a);
+        return a;
     }
 
     static boolean checkSuccess(String firstWord, String lastWord) {
         char lastChar = firstWord.charAt(firstWord.length() - 1);
         char firstChar = lastWord.charAt(0);
-        System.out.println(firstChar);
-        System.out.println((int) firstChar);
-        System.out.println(lastChar);
-        System.out.println((int) lastChar);
+
+        for (char a : firstWord.toCharArray()) {
+            System.out.println((Character.toString(a)));
+            System.out.println((int) a);
+        }
+        System.out.println("and");
+        for (char a : lastWord.toCharArray()) {
+            System.out.println((Character.toString(a)));
+            System.out.println((int) a);
+        }
         if (lastChar == firstChar) {
             return true;
         }
@@ -57,6 +65,7 @@ class WordGameApp {
         while (true) {
             cnt = (cnt + 1) % playerNum;
             String last = player[cnt].getWordFromUser();
+            System.out.println(last);
             if (!Player.checkSuccess(first, last)) {
                 break;
             }

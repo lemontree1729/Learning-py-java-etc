@@ -1,6 +1,7 @@
 # 21/10/28 Java lesson
 
 ## What I learned(Important)
+
 * class : what makes instance ([Circle.java](Circle.java))
   * instance : object made by class(with `new Class_name()` declare)
   * constructor : actual instance making source with initializing method and field with input parameter
@@ -26,4 +27,4 @@
 ## Practice problems
 
 ## html
-https://needjarvis.tistory.com/
+<https://needjarvis.tistory.com/>
