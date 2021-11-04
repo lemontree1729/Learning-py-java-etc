@@ -1,3 +1,4 @@
+// Quiz05 and Quiz 06
 package d020;
 
 import java.util.Scanner;
