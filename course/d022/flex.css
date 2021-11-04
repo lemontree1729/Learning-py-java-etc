@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    width: 150px;
+    height: 200px;
+    background: skyblue;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.item{
+    background: red;
+    margin: 5px;
+}
+
+.parent{
+    background: tan;
+    margin-top: 50px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.child{
+    width: 30%;
+    height:100px;
+    background: violet;
+}
