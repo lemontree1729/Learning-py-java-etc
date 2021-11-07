@@ -9,9 +9,9 @@ frame1 = Frame(window, relief="solid", width=500, height=500, bd=2)
 frame1.pack()
 chesslb = [[0] * 8 for _ in range(8)]
 img = [[0] * 8 for _ in range(2)]
-bkimg = PhotoImage(file="chimg/bk.png")
-blankimg = PhotoImage(file="chimg/blank.png")
-bkdotimg = PhotoImage(file="chimg/bkdot.png")
+bkimg = PhotoImage(file="src/bk.png")
+blankimg = PhotoImage(file="src/blank.png")
+bkdotimg = PhotoImage(file="src/bkdot.png")
 bkimg = bkimg.zoom(5, 5)
 for x in range(8):
     for y in range(8):
