@@ -1,0 +1,120 @@
+html {
+  margin: auto;
+  min-width: 320px;
+  max-width: 1440px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#photo-box {
+  width: 80%;
+  margin: 0 auto;
+  -webkit-columns: 4;
+          columns: 4;
+  background-color: orange;
+}
+
+.photo {
+  width: 100%;
+  min-height: 204.8px;
+  max-height: 460.8px;
+  height: 32vw;
+  margin-bottom: 10px;
+  display: inline-block;
+  background: skyblue;
+  color: blue;
+}
+
+#modal {
+  max-height: 70%;
+  padding: 10px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: gray;
+  opacity: 0.8;
+}
+
+#modal > #modheader {
+  height: 80px;
+  line-height: 80px;
+  background: green;
+}
+
+#modal > #modbody {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin: 10px 0;
+  background: yellow;
+  overflow: auto;
+}
+
+#modal > #modbody > p {
+  margin: 10px;
+  font-size: 20px;
+  background: yellowgreen;
+}
+
+#modal > #modfooter {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: red;
+}
+
+#modal > #modfooter > div {
+  height: 40px;
+  line-height: 40px;
+  width: 50px;
+  margin: 5px;
+  background: cadetblue;
+  border-radius: 25%;
+}
+
+@media (max-width: 767px) {
+  #photo-box {
+    -webkit-columns: 3;
+            columns: 3;
+  }
+  .photo {
+    height: 42vw;
+  }
+}
+
+@media (max-width: 479px) {
+  #photo-box {
+    -webkit-columns: 2;
+            columns: 2;
+  }
+  .photo {
+    height: 64vw;
+  }
+  #modal {
+    width: 80%;
+  }
+  #modal > #modbody > p {
+    font-size: 15px;
+  }
+}
