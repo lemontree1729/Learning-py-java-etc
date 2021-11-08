@@ -2,5 +2,7 @@
 
 int main(void)
 {
-    int a = 2
+    int a = 2;
+    std::cout << a;
+    return 0;
 }

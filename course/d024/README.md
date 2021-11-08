@@ -6,8 +6,20 @@
 
 ## What I studied myself
 
-* what is c++?
-  * <http://tcpschool.com/cpp/cpp_operator_cpp>
+* [What is c++?](http://tcpschool.com/cpp/cpp_operator_cpp)
+
+### [How to compile c++ in vscode](https://code.visualstudio.com/docs/cpp/config-mingw)
+
+1. [install msys2](https://github.com/msys2/msys2-installer/releases/download/2021-06-04/msys2-x86_64-20210604.exe)
+    * when msys2 window opens,  type `pacman -Syu`
+    * restart MSYS2 MSYS and type  
+    `pacman -Su`  
+    `pacman -S base-devel gcc vim cmake` [to install gcc](https://www.devdungeon.com/content/install-gcc-compiler-windows-msys2-cc)  
+    `pacman -S --needed base-devel mingw-w64-x86_64-toochain`
+    * Add `C:\msys64\mingw64\bin` to your window Path
+    * check instalation with `g++ --version`, `gdb --version` command in cmd
+
+2. install C/C++ and C/C++ Compile Run in marketplace and press `F5` to compile it
 
 ## What I didn't understand
 
