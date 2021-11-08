@@ -17,11 +17,7 @@ class ArrayUtil {
         String toprint = "";
         if (!(a == null || a.length == 0)) {
             for (int i = 0; i < a.length; i++) {
-                if (i == 0) {
-                    toprint += a[0];
-                } else {
-                    toprint += ", " + a[i];
-                }
+                toprint += i == 0 ? a[0] : ", " + a[i];
             }
         }
         System.out.println("[" + toprint + "]");

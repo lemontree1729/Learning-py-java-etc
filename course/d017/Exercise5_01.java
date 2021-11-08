@@ -1,12 +1,12 @@
 package d017;
 
-class Exercise5_01 {
+class Exercise5_01 { // how to declare variable
     public static void main(String[] args) {
-        int[] a[];
-        int[] b = { 1, 2, 3, };
-        int[] c = new int[5];
-        // int[] d = new int[5] { 1, 2, 3, 4, 5 };
-        // int e[5];
-        int[] f[] = new int[3][];
+        int[] a[]; // possible
+        int[] b = { 1, 2, 3, }; // possible
+        int[] c = new int[5]; // possible
+        // int[] d = new int[5] { 1, 2, 3, 4, 5 }; impossible!
+        // int e[5]; impossible!
+        int[] f[] = new int[3][]; // possible
     }
 }

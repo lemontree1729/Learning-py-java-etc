@@ -14,31 +14,16 @@ class Player {
 
     String getWordFromUser() {
         System.out.print(name + ">>");
-        String a = sc.next(); // error accurs here on VS code. guess it is because of encoding problem but
-                              // eclipse works fine
-        System.out.println(a);
-        return a;
+        return sc.next(); // error accurs here on VS code.
+        // guess there is some encoding problem but eclipse works fine
     }
 
-    static boolean checkSuccess(String firstWord, String lastWord) {
-        char lastChar = firstWord.charAt(firstWord.length() - 1);
-        char firstChar = lastWord.charAt(0);
-
-        for (char a : firstWord.toCharArray()) {
-            System.out.println((Character.toString(a)));
-            System.out.println((int) a);
-        }
-        System.out.println("and");
-        for (char a : lastWord.toCharArray()) {
-            System.out.println((Character.toString(a)));
-            System.out.println((int) a);
-        }
-        if (lastChar == firstChar) {
+    static boolean checkSuccess(String first, String last) {
+        if (first.charAt(first.length() - 1) == last.charAt(0)) {
             return true;
         }
         System.out.print("Continue the game?(Y/N)");
-        String yorn = sc.next();
-        if (yorn.charAt(0) == 'Y') {
+        if (sc.next().equals("Y")) {
             return true;
         }
         return false;
@@ -46,7 +31,7 @@ class Player {
 }
 
 class WordGameApp {
-    static int playerNum;
+    int playerNum;
 
     WordGameApp() {
         System.out.println("starting word relay game!");
@@ -55,18 +40,17 @@ class WordGameApp {
         playerNum = sc.nextInt();
     }
 
-    static void run() {
+    void run() {
         Player[] player = new Player[playerNum];
         for (int i = 0; i < playerNum; i++) {
             player[i] = new Player();
         }
-        System.out.println("Starting word is 아버지");
-        String first = "아버지";
+        System.out.println("Starting word is father");
+        String first = "father";
         int cnt = 0;
         while (true) {
             cnt = (cnt + 1) % playerNum;
             String last = player[cnt].getWordFromUser();
-            System.out.println(last);
             if (!Player.checkSuccess(first, last)) {
                 break;
             }

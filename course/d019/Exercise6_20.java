@@ -19,7 +19,7 @@ class Exercise6_20 {
 
     /*- write "/*-" to indent block comment
      *
-     *  static int[] shuffle(int[] arr) { <---- why you should use static?
+     *  static int[] shuffle(int[] arr) {
      *      if(arr == null || arr.length ==0) { <---- using null to check error
      *          return arr;
      *      }

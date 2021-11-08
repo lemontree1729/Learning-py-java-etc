@@ -3,8 +3,7 @@ package d020;
 import java.util.Scanner;
 
 class PhoneBook {
-    String name;
-    String tel;
+    String name, tel;
 
     PhoneBook(String name, String tel) {
         this.name = name;
@@ -31,7 +30,7 @@ class Quiz08 {
                 }
             }
             if (chk) {
-                System.out.println(name + "is not in list");
+                System.out.println(name + " is not in list");
             }
         }
     }

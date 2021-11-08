@@ -67,9 +67,51 @@
 * [What is Super most class?](https://blog.naver.com/javaking75/140176462001)
 * [top level class or top level interface only has public or default access modifier](https://docs.oracle.com/javase/specs/jls/se17/html/jls-8.html#jls-8.1)
 
-## Practice problems
-
 ## Useful links
 
 <https://docs.oracle.com/javase/specs/jls/se17/html/index.html>
 <https://compscicentral.com/how-does-java-work/>
+
+## Practice problems
+
+* [Quiz01.java](Quiz01.java)
+![image of Quiz01.java](./img/quiz01.PNG)
+
+* [Quiz02.java](Quiz02.java)
+![image of Quiz02.java](./img/quiz02.PNG)
+
+* [quiz03.java](quiz03.java)
+![image of Quiz03.java](./img/quiz03.PNG)
+
+* [Quiz04.java](Quiz04.java)
+![image of Quiz04.java](./img/quiz04.PNG)
+
+* [Quiz05.java](CircleManager.java)
+![image of Quiz05.java](./img/quiz05.PNG)
+
+* [Quiz07.java](MonthSchedule.java)
+![image of Quiz07.java](./img/quiz07-1.PNG)
+![image of Quiz07.java](./img/quiz07-2.PNG)
+
+* [Quiz08.java](Quiz08.java)
+![image of Quiz08.java](./img/quiz08-1.PNG)
+![image of Quiz08.java](./img/quiz08-2.PNG)
+
+* [Quiz09.java](StaticEx.java)
+![image of Quiz09.java](./img/quiz09.PNG)
+
+* [Quiz10.java](DicApp.java)
+![image of Quiz10.java](./img/quiz10.PNG)
+
+* [Quiz11.java](Quiz11.java)
+![image of Quiz11.java](./img/quiz11-1.PNG)
+![image of Quiz11.java](./img/quiz11-2.PNG)
+
+* [Quiz12.java](Quiz12.java)
+![image of Quiz12.java](./img/quiz12-1.PNG)
+![image of Quiz12.java](./img/quiz12-2.PNG)
+![image of Quiz12.java](./img/quiz12-3.PNG)
+
+* [QuizOpen.java](WordGameApp.java)
+![image of QuizOpen.java](./img/quiz_open-1.PNG)
+![image of QuizOpen.java](./img/quiz_open-2.PNG)

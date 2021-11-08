@@ -2,48 +2,29 @@ package d019;
 
 class MyTv {
     boolean isPowerOn;
-    int channel;
-    int volume;
+    int channel, volume;
 
-    final int MAX_VOLUME = 100;
-    final int MIN_VOLUME = 0;
-    final int MAX_CHANNEL = 100;
-    final int MIN_CHANNEL = 1;
+    final int MAX_VOLUME = 100, MIN_VOLUME = 0;
+    final int MAX_CHANNEL = 100, MIN_CHANNEL = 1;
 
     void turnOnOff() {
-        if (isPowerOn) {
-            isPowerOn = false;
-        } else {
-            isPowerOn = true;
-        }
+        isPowerOn = !isPowerOn;
     }
 
     void volumeUp() {
-        if (volume < MAX_VOLUME) {
-            volume++;
-        }
+        volume += volume < MAX_VOLUME ? 1 : 0;
     }
 
     void volumeDown() {
-        if (volume > MIN_VOLUME) {
-            volume--;
-        }
+        volume -= volume > MIN_VOLUME ? 1 : 0;
     }
 
     void channelUp() {
-        if (channel == MAX_CHANNEL) {
-            channel = MIN_CHANNEL;
-        } else {
-            channel++;
-        }
+        channel = channel == MAX_CHANNEL ? MIN_CHANNEL : channel++;
     }
 
     void channelDown() {
-        if (channel == MIN_CHANNEL) {
-            channel = MAX_CHANNEL;
-        } else {
-            channel--;
-        }
+        channel = channel == MIN_CHANNEL ? MAX_CHANNEL : channel--;
     }
 }
 
