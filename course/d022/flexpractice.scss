@@ -1,0 +1,34 @@
+* {
+    border: 1px solid yellow;
+}
+html {
+    height: 100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-weight: bold;
+    background-color: skyblue;
+    > #header {
+        height: 50px;
+    }
+    > #body {
+        display: flex;
+        flex-grow: 1;
+        > #sidebar {
+            width: 400px;
+        }
+        > #contents {
+            flex: 1 1 0;
+        }
+    }
+    > #footer {
+        height: 100px;
+    }
+}
