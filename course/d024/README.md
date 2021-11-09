@@ -15,7 +15,7 @@
     * restart MSYS2 MSYS and type  
     `pacman -Su`  
     `pacman -S base-devel gcc vim cmake` [to install gcc](https://www.devdungeon.com/content/install-gcc-compiler-windows-msys2-cc)  
-    `pacman -S --needed base-devel mingw-w64-x86_64-toochain`
+    `pacman -S --needed base-devel mingw-w64-x86_64-toolchain`
     * Add `C:\msys64\mingw64\bin` to your window Path
     * check instalation with `g++ --version`, `gdb --version` command in cmd
 
