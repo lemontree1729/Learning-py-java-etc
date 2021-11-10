@@ -1,5 +1,5 @@
 from tkinter import *
-from tkgallery import Gallery
+from tktools import Gallery
 
 ## set root Tk
 window = Tk()

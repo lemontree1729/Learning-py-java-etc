@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-from tkgallery import Gallery
+from tktools import Gallery
 
 
 ## set root Tk
