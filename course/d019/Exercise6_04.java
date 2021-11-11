@@ -24,11 +24,11 @@ class Student {
     int eng;
     int math;
 
-    public int getTotal() {
+    int getTotal() {
         return kor + eng + math;
     }
 
-    public float getAverage() {
+    float getAverage() {
         return Math.round(getTotal() * 100 / 3.0) / 100F;
         // return (int) (getTotal() * 100 / 3F + 0.5F) / 100F;
     }

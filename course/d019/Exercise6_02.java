@@ -13,17 +13,17 @@ class SutdaCard {
     int num;
     boolean isKwang;
 
-    public SutdaCard() {
+    SutdaCard() {
         num = 1;
         isKwang = true;
     }
 
-    public SutdaCard(int num, boolean isKwang) {
+    SutdaCard(int num, boolean isKwang) {
         this.num = num;
         this.isKwang = isKwang;
     }
 
-    public String info() {
+    String info() {
         return num + (isKwang ? "K" : "");
     }
 }

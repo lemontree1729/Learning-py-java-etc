@@ -3,8 +3,8 @@ package d012;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Quiz08 {
-    public static void sort(int smaller, int bigger) {
+class Quiz08 {
+    static void sort(int smaller, int bigger) {
         int temp;
         if (bigger < smaller) {
             temp = bigger;
@@ -13,7 +13,7 @@ public class Quiz08 {
         }
     }
 
-    public static boolean inRect(int x1, int y1, int x2, int y2) {
+    static boolean inRect(int x1, int y1, int x2, int y2) {
         if (((100 <= x1 && x1 < 200) || (100 < x2 && x2 <= 200))
                 && ((100 <= y1 && y1 < 200) || (100 < y2 && y2 <= 200))) {
             return true;

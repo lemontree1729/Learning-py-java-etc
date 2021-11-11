@@ -1,6 +1,6 @@
 package d005;
 
-public class MyInfoApp {
+class MyInfoApp {
 
 	public static void main(String[] args) {
 		System.out.println("Kitae Hwang");

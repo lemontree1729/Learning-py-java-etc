@@ -2,7 +2,7 @@ package d015;
 
 import java.util.Random;
 
-public class Quiz09 {
+class Quiz09 {
     public static void main(String[] args) {
         Random r = new Random();
         int[][] li = new int[4][4];

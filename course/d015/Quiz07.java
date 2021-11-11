@@ -2,7 +2,7 @@ package d015;
 
 import java.lang.Math;
 
-public class Quiz07 {
+class Quiz07 {
     public static void main(String[] args) {
         int ran, sum = 0;
         System.out.print("random numbers : ");

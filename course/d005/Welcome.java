@@ -1,6 +1,6 @@
 package d005;
 
-public class Welcome {
+class Welcome {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome!!");

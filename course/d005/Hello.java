@@ -6,8 +6,8 @@
  */
 package d005;
 
-public class Hello { // declare class and class name as "Hello"
-	public static int sum(int i, int j) { // declare method, name "sum",output type and input with type
+class Hello { // declare class and class name as "Hello"
+	static int sum(int i, int j) { // declare method, name "sum",output type and input with type
 		return i + j; // return int as i + j
 	}
 

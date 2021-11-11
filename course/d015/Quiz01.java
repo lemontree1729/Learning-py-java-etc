@@ -1,7 +1,7 @@
 package d015;
 
-public class Quiz01 {
-    public static void whileTest(int n) {
+class Quiz01 {
+    static void whileTest(int n) {
         int sum = 0, i = 0;
         while (i < 100) {
             sum += i;
@@ -10,7 +10,7 @@ public class Quiz01 {
         System.out.println(sum);
     }
 
-    public static void forTest(int n) {
+    static void forTest(int n) {
         int sum = 0;
         for (int i = 0; i < 100; i += 2) {
             sum += i;
@@ -19,7 +19,7 @@ public class Quiz01 {
 
     }
 
-    public static void doWhileTest(int n) {
+    static void doWhileTest(int n) {
         int sum = 0, i = 0;
         do {
             sum += i;

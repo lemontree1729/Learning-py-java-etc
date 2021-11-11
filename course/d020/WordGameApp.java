@@ -32,11 +32,11 @@ class Player {
 
 class WordGameApp {
     int playerNum;
+    Scanner sc = new Scanner(System.in);
 
     WordGameApp() {
         System.out.println("starting word relay game!");
         System.out.print("enter the number of player>>");
-        Scanner sc = new Scanner(System.in);
         playerNum = sc.nextInt();
     }
 
@@ -56,6 +56,7 @@ class WordGameApp {
             }
             first = last;
         }
+        sc.close();
     }
 
     public static void main(String[] args) {

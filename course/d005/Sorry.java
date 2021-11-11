@@ -1,6 +1,6 @@
 package d005;
 
-public class Sorry {
+class Sorry {
 
 	public static void main(String[] args) {
 		System.out.println("Sorry");

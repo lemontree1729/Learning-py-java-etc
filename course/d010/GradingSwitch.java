@@ -2,7 +2,7 @@ package d010;
 
 import java.util.Scanner;
 
-public class GradingSwitch {
+class GradingSwitch {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("enter your score(0~100) : ");

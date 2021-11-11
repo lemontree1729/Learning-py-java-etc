@@ -2,7 +2,7 @@ package d015;
 
 import java.util.Scanner;
 
-public class Quiz14 {
+class Quiz14 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String course[] = { "Java", "C++", "HTML5", "ComputerStructure", "Android" };

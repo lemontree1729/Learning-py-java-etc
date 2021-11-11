@@ -1,6 +1,6 @@
 package d010;
 
-public class BitOperator {
+class BitOperator {
     public static void main(String[] args) {
         short a = (short) 0x55ff;
         short b = (short) 0x00ff;

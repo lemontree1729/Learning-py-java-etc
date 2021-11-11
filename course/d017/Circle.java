@@ -8,16 +8,16 @@ class Circle { // define class name
     // static variables and functions can even use without new instance
     // because it will be made when class is made
 
-    public Circle() { // first constructor
+    Circle() { // first constructor
     }
 
-    public Circle(int radius) { // second constructor with parameter radius(or local variable of constuctor)
+    Circle(int radius) { // second constructor with parameter radius(or local variable of constuctor)
         // also known as method overloading
         this.radius = radius; // use this(reference instance itself) to distinguish instance variable radius
                               // with local variable radius
     }
 
-    public double getArea() { // instance method of Circle
+    double getArea() { // instance method of Circle
         return 3.14 * radius * radius;
     }
 
