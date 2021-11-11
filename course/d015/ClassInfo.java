@@ -4,7 +4,7 @@ import java.lang.reflect.*;
 
 class ClassInfo {
     static void findInfo(Object obj) {
-        Class cls = obj.getClass();
+        Class<?> cls = obj.getClass();
         Method[] mets = cls.getMethods();
         Method[] demets = cls.getDeclaredMethods();
         Field[] flds = cls.getFields();

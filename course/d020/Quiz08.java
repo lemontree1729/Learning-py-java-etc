@@ -18,9 +18,6 @@ class Quiz08 {
         if (my == null) {
             System.out.println(name + " is not in list");
         } else {
-            if (name.equals("stop")) {
-                System.exit(0);
-            }
             boolean chk = true;
             for (PhoneBook book : my) {
                 if (book.name.equals(name)) {
@@ -45,7 +42,12 @@ class Quiz08 {
         }
         while (true) {
             System.out.print("name for search>>");
-            getPhoneNumber(sc.next());
+            String a = sc.next();
+            if (a.equals("stop")) {
+                break;
+            }
+            getPhoneNumber(a);
         }
+        sc.close();
     }
 }

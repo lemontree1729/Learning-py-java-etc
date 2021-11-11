@@ -82,5 +82,6 @@ class Quiz11 {
             System.out.println(div.calculate());
             break;
         }
+        sc.close();
     }
 }

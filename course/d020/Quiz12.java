@@ -100,6 +100,6 @@ class SeatSystem {
 
 class Quiz12 {
     public static void main(String[] args) {
-        SeatSystem my = new SeatSystem();
+        new SeatSystem();
     }
 }
