@@ -2,7 +2,7 @@ package d015;
 
 import java.util.Scanner;
 
-public class Quiz04 {
+class Quiz04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("enter any lower alphabet>>");

@@ -2,7 +2,7 @@ package d005;
 
 import java.util.Scanner; // use Scanner to get standard input
 
-public class HowToInput {
+class HowToInput {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in); // Can construct with both String and InputStream.
 		// Press enter will end the input with including the newline

@@ -1,6 +1,6 @@
 package d010;
 
-public class TypeConversion {
+class TypeConversion {
     public static void main(String[] args) {
         byte b = 127;
         int i = 100;

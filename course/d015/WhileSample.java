@@ -2,7 +2,7 @@ package d015;
 
 import java.util.Scanner;
 
-public class WhileSample {
+class WhileSample {
     public static void main(String[] args) {
         int count = 0;
         int sum = 0;

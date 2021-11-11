@@ -3,7 +3,7 @@ package d012;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Quiz12 {
+class Quiz12 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("ENTER ANYTHING WRONG TO QUIT!");

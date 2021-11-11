@@ -2,7 +2,7 @@ package d010;
 
 import java.util.Scanner;
 
-public class ScannerEx {
+class ScannerEx {
     public static void main(String[] args) {
         String[] info = { "name", "city of origin", "weight", "single or not" };
         System.out.println("enter " + String.join(", ", info) + " seperated with spacebar");

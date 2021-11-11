@@ -2,7 +2,7 @@ package d005;
 
 import java.util.Scanner;
 
-public class ScanError { // error with using both nextInt() method and nextLine()
+class ScanError { // error with using both nextInt() method and nextLine()
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

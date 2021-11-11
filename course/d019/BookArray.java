@@ -5,13 +5,13 @@ import java.util.Scanner;
 class Book {
 	String title, author;
 
-	public Book(String title, String author) {
+	Book(String title, String author) {
 		this.title = title;
 		this.author = author;
 	}
 }
 
-public class BookArray {
+class BookArray {
 	public static void main(String[] args) {
 		Book[] book = new Book[4];
 		Scanner sc = new Scanner(System.in);

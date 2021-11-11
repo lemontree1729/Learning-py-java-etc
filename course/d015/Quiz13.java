@@ -1,6 +1,6 @@
 package d015;
 
-public class Quiz13 {
+class Quiz13 {
     public static void main(String[] args) {
         int cnt;
         for (int i = 1; i < 100; i++) {

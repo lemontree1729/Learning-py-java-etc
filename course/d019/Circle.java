@@ -3,15 +3,15 @@ package d019;
 class Circle {
 	int radius;
 
-	public Circle(int radius) {
+	Circle(int radius) {
 		this.radius = radius;
 	}
 
-	public void set(int radius) {
+	void set(int radius) {
 		this.radius = radius;
 	}
 
-	public double getArea() {
+	double getArea() {
 		return 3.14 * radius * radius;
 	}
 

@@ -2,8 +2,8 @@ package d015;
 
 import java.lang.reflect.*;
 
-public class ClassInfo {
-    public static void findInfo(Object obj) {
+class ClassInfo {
+    static void findInfo(Object obj) {
         Class cls = obj.getClass();
         Method[] mets = cls.getMethods();
         Method[] demets = cls.getDeclaredMethods();

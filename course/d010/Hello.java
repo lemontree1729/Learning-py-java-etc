@@ -1,8 +1,8 @@
 package d010;
 
-public class Hello {
+class Hello {
 
-    public static int sum(int n, int m) {
+    static int sum(int n, int m) {
         return n + m;
     }
 

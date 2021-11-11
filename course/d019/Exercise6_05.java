@@ -11,12 +11,12 @@ class Students {
     String name;
     int[] scores;
 
-    public Students(String name, int... args) {
+    Students(String name, int... args) {
         this.name = name;
         scores = args;
     }
 
-    public String info() {
+    String info() {
         String result = name;
         int sum = 0;
         for (int i = 0; i < scores.length; i++) {
