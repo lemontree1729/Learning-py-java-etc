@@ -2,85 +2,137 @@ import tkinter as tk
 import tkinter.filedialog as tkfd
 import tkinter.simpledialog as tksd
 import wand.image as wd
+from collections import deque
+
+
+window, canvas, first, last, setting = (None,) * 5
+last = wd.Image()
+temp = deque([])
 
 
 def displayImage():
-    global window, canvas, photo, present
-    w = present.width
-    h = present.height
-    window.geometry(str(w) + "x" + str(h))
+    global window, canvas, photo, last
+    w, h = last.width, last.height
+    window.geometry(f"{w}x{h}")
     if not canvas:
         canvas = tk.Canvas(window, bg="#626262", bd=0, highlightthickness=0)
     canvas.delete("all")
     canvas.config(width=w, height=h)
     photo = tk.PhotoImage()  # you should initialize photo
-    photo.put(present.make_blob())  # no need to get RGB!!!!!
-    canvas.create_image((w / 2, h / 2), image=photo, state="normal")
+    photo.put(last.make_blob())  # no need to get RGB!!!!!
+    canvas.create_image((w / 2, h / 2), image=photo)
     canvas.pack()
 
 
-def func_open():
-    global origin, present
+def funcOpen():
+    global first, last, temp
+    temp = []
     readFp = tkfd.askopenfilename(
         filetypes=[("All image file", ".jpg .jpeg .bmp .png .tif .gif")],
     )  # PhotoImage widget supports the GIF, PGM, PPM, and PNG file formats as of Tkinter 8.6
-    if not readFp:
+    if readFp == "":
         return
-    origin = wd.Image(filename=readFp, format="png")
-    present = wd.Image(filename=readFp, format="png")
+    first = wd.Image(filename=readFp, format="png")
+    last = first.clone()
     displayImage()
-    pass
 
 
-def func_save():
-    global window, present
-    if present == None:
+def funcSave():
+    global last
+    if last == None:
         return
     saveFp = tkfd.asksaveasfile(
         defaultextension=".png",
-        filetypes=(("PNG file", ".png"), ("All", "*.*")),
+        filetypes=(("PNG files", ".png"), ("All", "*.*")),
     )
-    if not saveFp:
+    if saveFp == None:
         return
-    savePhoto = present.convert("png")
-    savePhoto.save(filename=saveFp.name)
-    pass
+    last.convert("png").save(filename=saveFp.name)
 
 
-def func_exit():
+def funcReturn():
+    global temp, last, fileMenu
+    if len(temp) == 0:
+        return
+    last = temp.pop()
+    displayImage()
+    if len(temp) == 0:
+        fileMenu.entryconfig("return", state="disabled")
+
+
+def funcExit():
     global window
     window.quit()
     window.destroy()
-    pass
 
 
-def func_scale():
-    global present
-    if present == None:
+def setMsg(name, type: type, min=None, max=None):
+    if type == int:
+        f = tksd.askinteger
+    elif type == float:
+        f = tksd.askfloat
+    if min == None and max == None:
+        return f(name, f"Enter {name}")
+    return f(name, f"Enter {name}({min}~{max})", minvalue=min, maxvalue=max)
+
+
+def setCfg(confname, funcname=None, **kwargs):
+    global setting
+    kwargs["funcname"] = funcname or confname
+    if setting == None:
+        setting = dict()
+    if setting.get(confname, None) == None:
+        setting[confname] = kwargs
+    else:
+        for key in kwargs:
+            setting[confname][key] = kwargs[key]
+
+
+def tempSave(last):
+    global temp, fileMenu
+    if len(temp) < 10:
+        temp.append(last.clone())
+    else:
+        temp.popleft()
+        temp.append(last.clone())
+    fileMenu.entryconfig("return", state="normal")
+
+
+def funcCfg(confname):
+    global setting, last, first, temp
+    if last == wd.Image():
         return
-    scale = tksd.askfloat("scale", "Enter scale(0~5))", minvalue=0, maxvalue=5)
-    if scale != None:
-        present.resize(int(present.width * scale), int(present.height * scale))
-        displayImage()
-    pass
+    tempSave(last)
+    preserve = False
+    data = {}
+    for key, value in setting.get(confname, {}).items():
+        if key == "funcname":
+            funcname = value
+            continue
+        if type(value[0]) == tuple:
+            data[key] = setMsg(key, *value[0])
+            if len(value) > 1:
+                preserve = True
+                if len(value) == 2:
+                    value.append(data[key])
+                else:
+                    if type(value[1]) == str:
+                        data[key] = eval(
+                            str(value[2]) + " " + value[1] + " " + str(data[key])
+                        )
+                    else:
+                        data[key] = value[1](value[2], data[key])
+                    value[2] = data[key]
+        else:
+            data[key] = value[0]
+    if preserve:
+        last = first.clone()
+    try:
+        eval("last." + funcname)(**data)
+    except:
+        eval("last." + funcname)(*data.values())
+    displayImage()
 
-
-def func_rotate():
-    global present
-    if present == None:
-        return
-    degree = tksd.askfloat("scale", "Enter degree(0~360))", minvalue=0, maxvalue=360)
-    if degree != None:
-        present.rotate(degree)
-        displayImage()
-    pass
-
-
-def config():
-    global origin, present
-
-
-window, canvas, origin, temp, present = (None,) * 5
 
 window = tk.Tk()
 window.geometry("250x250")
@@ -88,28 +140,48 @@ window.title("photoshop")
 mainMenu = tk.Menu(window)
 window.config(menu=mainMenu)
 
+window.bind("<Control-z>", lambda event: funcReturn())
+
 fileMenu = tk.Menu(mainMenu, tearoff="off")
 mainMenu.add_cascade(label="file", menu=fileMenu)
-fileMenu.add_command(label="open file", command=func_open)
-fileMenu.add_command(label="save file", command=func_save)
-fileMenu.add_command(label="exit")
+fileMenu.add_command(label="open file", command=funcOpen)
+fileMenu.add_command(label="save file", command=funcSave)
+fileMenu.add_command(label="return", command=funcReturn, state="disabled")
+fileMenu.add_command(label="exit", command=funcExit)
 
 tool1Menu = tk.Menu(mainMenu, tearoff="off")
 mainMenu.add_cascade(label="tool1", menu=tool1Menu)
-tool1Menu.add_command(label="scale", command=func_scale)
-tool1Menu.add_command(
-    label="flip",
-    command=lambda: present.flip() and displayImage() if present else None,
+setCfg(
+    "scale",
+    "resize",
+    scaleX=[(float,), lambda _, x: int(x * last.width), 0],
+    scaleY=[(float,), lambda _, y: int(y * last.height), 0],
 )
-tool1Menu.add_command(
-    label="flop",
-    command=lambda: present.flop() and displayImage() if present else None,
-)
+tool1Menu.add_command(label="scale", command=lambda: funcCfg("scale"))
+setCfg("resize", width=[(int,), "and"], height=[(int,), "and"])
+tool1Menu.add_command(label="resize", command=lambda: funcCfg("resize"))
+setCfg("flip")
+tool1Menu.add_command(label="flip", command=lambda: funcCfg("flip"))
+setCfg("flop")
+tool1Menu.add_command(label="flop", command=lambda: funcCfg("flop"))
+
 tool2Menu = tk.Menu(mainMenu, tearoff="off")
 mainMenu.add_cascade(label="tool2", menu=tool2Menu)
-tool2Menu.add_command(label="rotate", command=func_rotate)
-tool2Menu.add_command(label="zoom")
-tool2Menu.add_command(label="zoom")
+setCfg("rotate", degree=[(float, 0, 360), "+"])
+tool2Menu.add_command(label="rotate", command=lambda: funcCfg("rotate"))
+# tool2Menu.add_command(label="crop") <-------- hard to make with using funcCfg
+setCfg("noise", noise_type=["laplacian"], attenuate=[(float, 0, 1), "*"])
+tool2Menu.add_command(label="noise", command=lambda: funcCfg("noise"))
+setCfg("blue_shift", factor=[(float, 0, 1.5), "*"])
+tool2Menu.add_command(label="blue shift", command=lambda: funcCfg("blue_shift"))
+setCfg("charcoal", radius=[(float,), "*"], sigma=[(float,), "*"])
+tool2Menu.add_command(label="charcoal", command=lambda: funcCfg("charcoal"))
+setCfg("sepia_tone", threshold=[(float,), "*"])
+tool2Menu.add_command(label="sepia_tone", command=lambda: funcCfg("sepia_tone"))
+setCfg("swirl", degree=[(int,), "+"])
+tool2Menu.add_command(label="swirl", command=lambda: funcCfg("swirl"))
+setCfg("vignette", degree=[(int,), "+"])
+tool2Menu.add_command(label="vignette", command=lambda: funcCfg("vignette"))
 
 
 window.mainloop()
