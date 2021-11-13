@@ -2,6 +2,8 @@ import tkinter as tk
 import tkinter.filedialog as tkfd
 import tkinter.simpledialog as tksd
 import wand.image as wd
+import tkinter.messagebox as tkms
+from webbrowser import open_new
 
 
 def displayImage():
@@ -76,8 +78,12 @@ def func_rotate():
     pass
 
 
-def config():
+def config(func, **kwargs):
     global origin, present
+    if present == None:
+        return
+    func(*kwargs.values())
+    displayImage()
 
 
 window, canvas, origin, temp, present = (None,) * 5
@@ -85,6 +91,27 @@ window, canvas, origin, temp, present = (None,) * 5
 window = tk.Tk()
 window.geometry("250x250")
 window.title("photoshop")
+
+try:
+    import wand.image as wd
+except ModuleNotFoundError:
+    tkms.showerror(
+        "ModuleNotFoundError",
+        "wand is not installed. To install, type 'pip install wand` in cmd",
+    )
+    func_exit()
+except ImportError:
+    yesorno = tkms.askyesnocancel(
+        "ImportError", "ImageMagick is not installed. Do you want to install?"
+    )
+    if yesorno:
+        open_new(
+            r"https://download.imagemagick.org/ImageMagick/download/binaries/ImageMagick-7.1.0-13-Q16-HDRI-x64-dll.exe"
+        )
+    else:
+        tkms.showerror("ImportError", "Install ImageMagick")
+    func_exit()
+
 mainMenu = tk.Menu(window)
 window.config(menu=mainMenu)
 
@@ -108,7 +135,7 @@ tool1Menu.add_command(
 tool2Menu = tk.Menu(mainMenu, tearoff="off")
 mainMenu.add_cascade(label="tool2", menu=tool2Menu)
 tool2Menu.add_command(label="rotate", command=func_rotate)
-tool2Menu.add_command(label="zoom")
+tool2Menu.add_command(label="test", command=lambda: config(present.rotate, degree=90))
 tool2Menu.add_command(label="zoom")
 
 

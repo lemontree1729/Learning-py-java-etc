@@ -26,6 +26,14 @@ with Image(filename=imgPath + "cookie1.png") as img:
     middle2 = time()
     print(middle2 - middle1)
 
+paper3 = PhotoImage(width=width, height=height)
+a = {}
+a["width"] = width
+a["height"] = height
+paper4 = eval("PhotoImage(width=a['width'], height=a['height'])")
+label4 = Label(window, image=paper4)
+label4.pack()
+eval("paper3.put(pngblob)")
 
 label1 = Label(window, image=paper1)
 label2 = Label(window, image=paper2)
