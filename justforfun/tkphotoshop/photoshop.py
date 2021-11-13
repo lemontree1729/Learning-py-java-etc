@@ -2,13 +2,14 @@ import tkinter as tk
 import tkinter.filedialog as tkfd
 import tkinter.simpledialog as tksd
 import wand.image as wd
+import tkinter.messagebox as tkms
+from webbrowser import open_new
 from collections import deque
 
 
 window, canvas, first, last, setting = (None,) * 5
 last = wd.Image()
 temp = deque([])
-
 
 def displayImage():
     global window, canvas, photo, last
@@ -134,9 +135,39 @@ def funcCfg(confname):
     displayImage()
 
 
+def config(func, **kwargs):
+    global origin, present
+    if present == None:
+        return
+    func(*kwargs.values())
+    displayImage()
+
+
+
 window = tk.Tk()
 window.geometry("250x250")
 window.title("photoshop")
+
+try:
+    import wand.image as wd
+except ModuleNotFoundError:
+    tkms.showerror(
+        "ModuleNotFoundError",
+        "wand is not installed. To install, type 'pip install wand` in cmd",
+    )
+    func_exit()
+except ImportError:
+    yesorno = tkms.askyesnocancel(
+        "ImportError", "ImageMagick is not installed. Do you want to install?"
+    )
+    if yesorno:
+        open_new(
+            r"https://download.imagemagick.org/ImageMagick/download/binaries/ImageMagick-7.1.0-13-Q16-HDRI-x64-dll.exe"
+        )
+    else:
+        tkms.showerror("ImportError", "Install ImageMagick")
+    func_exit()
+
 mainMenu = tk.Menu(window)
 window.config(menu=mainMenu)
 
@@ -182,6 +213,7 @@ setCfg("swirl", degree=[(int,), "+"])
 tool2Menu.add_command(label="swirl", command=lambda: funcCfg("swirl"))
 setCfg("vignette", degree=[(int,), "+"])
 tool2Menu.add_command(label="vignette", command=lambda: funcCfg("vignette"))
+tool2Menu.add_command(label="test", command=lambda: config(present.rotate, degree=90))
 
 
 window.mainloop()

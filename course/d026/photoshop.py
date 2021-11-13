@@ -1,7 +1,8 @@
 import tkinter as tk
 import tkinter.filedialog as tkfd
 import tkinter.simpledialog as tksd
-import wand.image as wd
+import tkinter.messagebox as tkms
+from webbrowser import open_new
 
 
 def displayImage():
@@ -69,20 +70,48 @@ def func_rotate():
     global present
     if present == None:
         return
-    degree = tksd.askfloat("scale", "Enter degree(0~360))", minvalue=0, maxvalue=360)
+    degree = tksd.askfloat("degree", "Enter degree(0~360))", minvalue=0, maxvalue=360)
     if degree != None:
         present.rotate(degree)
         displayImage()
     pass
 
+preserve = {"resize, "}
+
+def config(func, **kwargs):
+    eval("")
+
+def preservetest(funcname: str, state1, state2=None):
+    if preserve[]
+
 
 window, canvas, origin, temp, present = (None,) * 5
-
 window = tk.Tk()
 window.geometry("250x250")
 window.title("photoshop")
+
+try:
+    import wand.image as wd
+except ModuleNotFoundError:
+    tkms.showerror(
+        "ModuleNotFoundError",
+        "wand is not installed. To install, type 'pip install wand` in cmd",
+    )
+    func_exit()
+except ImportError:
+    yesorno = tkms.askyesnocancel(
+        "ImportError", "ImageMagick is not installed. Do you want to install?"
+    )
+    if yesorno:
+        open_new(
+            r"https://download.imagemagick.org/ImageMagick/download/binaries/ImageMagick-7.1.0-13-Q16-HDRI-x64-dll.exe"
+        )
+    else:
+        tkms.showerror("ImportError", "Install ImageMagick")
+    func_exit()
+
 mainMenu = tk.Menu(window)
-window.config(menu=mainMenu)
+window["menu"] = mainMenu
 
 fileMenu = tk.Menu(mainMenu, tearoff="off")
 mainMenu.add_cascade(label="file", menu=fileMenu)

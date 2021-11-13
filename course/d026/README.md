@@ -49,3 +49,4 @@
 ## Useful links
 
 <https://stackoverflow.com/questions/10417524/why-is-photoimage-put-slow>
+<https://docs.wand-py.org/en/0.6.7/>
