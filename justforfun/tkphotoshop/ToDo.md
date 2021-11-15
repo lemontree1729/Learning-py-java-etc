@@ -9,3 +9,14 @@
 ## Search more information of dict key's input type
 
 ## Don't use lambda at menu command if you can
+
+class setting window(func, )
+- (class option menu)
+- class toggle bar(frame)
+- class ok cancle button
+
+- maketogglebar
+- config
+- return value
+- get value
+- open
