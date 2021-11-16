@@ -19,6 +19,8 @@
     * Click File -> Preferences -> Keyboard shortcuts
     * Search for "Run java", bind "F5" key and change when expression as `editorLangId == 'java'` with right click
     * Do same thing for "Python: Run Python File" and `editorLangId == 'python'`
+    * Run java or python once pressing start button upper right
+    * Now done!
 
 ## Practice problems
 
