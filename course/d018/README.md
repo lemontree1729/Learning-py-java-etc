@@ -33,4 +33,5 @@
 * [favorite.py](favorite.py)
 
 ## Useful site
-https://076923.github.io/
+
+<https://076923.github.io/>
