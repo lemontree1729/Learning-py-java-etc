@@ -22,46 +22,50 @@ class Dictionary extends PairMap {
         cap = n;
     }
 
-    String get(String key) {
+    int getIndex(String key) {
+        // getting index of key for keyArray
+        // on average, this method's time complex is twice larger than using for-break
         for (int i = 0; i < cap; i++) {
-            if (key.equals(keyArray[i])) {
-                return valueArray[i];
+            if (key == null) {
+                if (keyArray[i] == null) {
+                    return i;
+                }
+            } else {
+                if (key.equals(keyArray[i])) {
+                    return i;
+                }
             }
         }
-        return null;
+        return -1;
+    }
+
+    String get(String key) {
+        int keyIndex = getIndex(key);
+        if (keyIndex < 0) {
+            return null;
+        }
+        return valueArray[keyIndex];
     }
 
     void put(String key, String value) {
-        boolean redundancy = false;
-        for (int i = 0; i < cap; i++) {
-            if (key.equals(keyArray[i])) {
-                valueArray[i] = value;
-                redundancy = true;
-                break;
-            }
-        }
-        if (!redundancy) {
+        int keyIndex = getIndex(key), nullIndex = getIndex(null);
+        if (keyIndex >= 0) {
+            valueArray[keyIndex] = value;
+        } else {
             if (length() == cap) {
                 System.out.println("error: Cannot put. Capacity is already max");
             } else {
-                for (int i = 0; i < cap; i++) {
-                    if (keyArray[i] == null) {
-                        keyArray[i] = key;
-                        valueArray[i] = value;
-                        break;
-                    }
-                }
+                keyArray[nullIndex] = key;
+                valueArray[nullIndex] = value;
             }
         }
     }
 
     void delete(String key) {
-        for (int i = 0; i < cap; i++) {
-            if (key.equals(keyArray[i])) {
-                keyArray[i] = null;
-                valueArray[i] = null;
-                break;
-            }
+        int keyIndex = getIndex(key);
+        if (keyIndex >= 0) {
+            keyArray[keyIndex] = null;
+            valueArray[keyIndex] = null;
         }
     }
 
@@ -71,7 +75,6 @@ class Dictionary extends PairMap {
             if (keyArray[i] != null) {
                 cnt++;
             }
-
         }
         return cnt;
     }
