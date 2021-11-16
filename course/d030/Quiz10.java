@@ -24,7 +24,7 @@ class Dictionary extends PairMap {
 
     int getIndex(String key) {
         // getting index of key for keyArray
-        // on average, this method's time complex is twice larger than using for-break
+        // on average, this method's time complexity is twice larger than using for-break
         for (int i = 0; i < cap; i++) {
             if (key == null) {
                 if (keyArray[i] == null) {
