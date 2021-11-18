@@ -2,15 +2,9 @@
 
 ## What I learned(Important)
 
-*
-  *
-*
-    1.
-        *
-    2.
-        *
-* [$file-name.extension$]($file-name.extension$)
-    *
+* Abstract class
+
+* Interface
 
 ## What I studied myself
 

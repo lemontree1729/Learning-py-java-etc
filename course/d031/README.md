@@ -2,15 +2,7 @@
 
 ## What I learned(Important)
 
-*
-  *
-*
-    1.
-        *
-    2.
-        *
-* [$file-name.extension$]($file-name.extension$)
-    *
+* Make photoshop more functional
 
 ## What I studied myself
 
