@@ -1,8 +1,12 @@
-# 21/11/17 Python lesson
+# 21/11/18 Java lesson
 
 ## What I learned(Important)
 
-* Make photoshop more functional
+* stack
+
+* MVC(model, view, controller)
+
+* RDLL(Rotate Doubly Linked List)
 
 ## What I studied myself
 

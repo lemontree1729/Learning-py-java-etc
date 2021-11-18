@@ -2,6 +2,10 @@
 
 ## What I learned(Important)
 
+* Abstract class
+
+* Interface
+
 ## What I studied myself
 
 ## What I didn't understand
