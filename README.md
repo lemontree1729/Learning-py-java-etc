@@ -17,7 +17,6 @@
 ### Java
 
 * [Official Document](https://docs.oracle.com/javase/specs/jls/se17/html/index.html)
-
 * [Learning Java](https://www.geeksforgeeks.org/java/?ref=shm)
 
 ### Python
@@ -39,9 +38,7 @@
 
 * [Baekjoon online judge](https://www.acmicpc.net/)
 * [Difficulty system for Baekjoon](https://solved.ac/)
-
 * [Atcoder](https://atcoder.jp/contests/?lang=en)
-
 * [Atcoder Problem collection](https://kenkoooo.com/atcoder#/table/)
-
+* [Codeforeces](https://codeforces.com/)
 * [Guide for Problem Solving(Exactly for USACO)](https://usaco.guide/)
