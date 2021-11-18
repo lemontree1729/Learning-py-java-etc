@@ -6,7 +6,7 @@
 
 * MVC(model, view, controller)
 
-* Doubly Linked list
+* RDLL(Rotate Doubly Linked List)
 
 ## What I studied myself
 
