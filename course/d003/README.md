@@ -1,47 +1,15 @@
-# 21/10/05 lesson name
+# 21/10/07 Html lesson
 
 ## What I learned(Important)
 
-*
-  *
-*
-    1.
-        *
-    2.
-        *
-* [file_name.extension](file_name.extension)
-    *
+* How to use html tags
 
 ## What I studied myself
 
-*
-  *
-* .... (Studying)
-  *
-*
-*
-* .... (Studied)
-  *
-
 ## What I didn't understand
-
-*
-*
-*
 
 ## What I want to know more
 
-* .... (Solving)
-  *
-* .... (Solved)
-
 ## etc(Additional)
 
-*
-*
-*
-
 ## Practice problems
-
-* [file_name1.extension1](file_name1.extension1)
-* [file_name2.extension2](file_name2.extension2)

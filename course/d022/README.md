@@ -2,49 +2,22 @@
 
 ## What I learned(Important)
 
-* how to use flex
-  *
-*
-    1.
-        *
-    2.
-        *
-* [$file-name.extension$]($file-name.extension$)
-    *
+* How to use flex
 
 ## What I studied myself
 
-*
-  *
-* .... (Studying)
-  *
-*
-*
-* .... (Studied)
-  *
+* What is scss?
 
 ## What I didn't understand
 
-*
-*
-*
-
 ## What I want to know more
-
-* .... (Solving)
-  *
-* .... (Solved)
 
 ## etc(Additional)
 
-*
-*
-*
-
 ## Practice problems
 
-* [$file-name1.extension1$]($file-name1.extension1$)
-* [$file-name2.extension2$]($file-name2.extension2$)
+* [flex.css](flex.css)
+* [flexpractice.css](flexpractice.css)
 
 ## Useful links
 

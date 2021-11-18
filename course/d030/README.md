@@ -8,27 +8,9 @@
 
 ## What I studied myself
 
-*
-  *
-* .... (Studying)
-  *
-*
-*
-* .... (Studied)
-  *
-
 ## What I didn't understand
 
-* Make code that show how each access modifier works for package,  inhiritance and not in package
-
-*
-*
-
 ## What I want to know more
-
-* .... (Solving)
-  *
-* .... (Solved)
 
 ## etc(Additional)
 
@@ -41,13 +23,19 @@
     * Click File -> Preferences -> Keyboard shortcuts
     * Search for "Run java", bind "F5" key and change when expression as `editorLangId == 'java'` with right click
     * Do same thing for "Python: Run Python File" and `editorLangId == 'python'`
-
-*
-*
+    * Run java or python once pressing start button upper right
+    * Now done!
 
 ## Practice problems
 
-* [$file-name1.extension1$]($file-name1.extension1$)
-* [$file-name2.extension2$]($file-name2.extension2$)
+* [Quiz03.java](Quiz03.java)
+* [Quiz04.java](Quiz04.java)
+* [Quiz04.java](Quiz04.java)
+* [Quiz09.java](Quiz09.java)
+* [Quiz10.java](Quiz10.java)
+* [Quiz11.java](Quiz11.java)
+* [Quiz12.java](Quiz12.java)
+* [Quiz13.java](Quiz13.java)
+* [Quiz14.java](Quiz14.java)
 
 ## Useful links

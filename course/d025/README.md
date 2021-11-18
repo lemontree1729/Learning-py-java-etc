@@ -52,39 +52,20 @@
     * declare : `$target-type$& $variable-name$ = $target-variable$`
     > Same as pointer variable, & after type doesn't do nothing except announcing this is reference type
 
-* .... (Studying)
-  *
-*
-*
-* .... (Studied)
-  *
-
 ## What I didn't understand
 
 * When we makes subclass, superclass also maden. Then how reference variable merge both class?  
   or do they make 2 reference variables at once?
 * How superclass's constructor defines parameter?(Solved)
 
-*
-
 ## What I want to know more
-
-* .... (Solving)
-  *
-* .... (Solved)
 
 ## etc(Additional)
 
 * [how to parse string to int](https://stackoverflow.com/questions/194465/how-to-parse-a-string-to-an-int-in-c/6154614#6154614)
   * `std::stoi($string-variable$)`
 
-*
-*
-
 ## Practice problems
-
-* [$file-name1.extension1$]($file-name1.extension1$)
-* [$file-name2.extension2$]($file-name2.extension2$)
 
 ## Useful links
 
