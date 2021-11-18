@@ -27,3 +27,24 @@ abstract class Shape {
 
     abstract void draw();
 }
+
+class Line extends Shape {
+    @Override
+    public void draw() {
+        System.out.print("1");
+    }
+}
+
+class Rect extends Shape {
+    @Override
+    public void draw() {
+        System.out.print("2");
+    }
+}
+
+class Circle extends Shape {
+    @Override
+    public void draw() {
+        System.out.print("3");
+    }
+}

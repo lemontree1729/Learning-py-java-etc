@@ -2,6 +2,16 @@ package d032;
 
 import java.util.Scanner;
 
+interface Stack {
+    int length();
+
+    int capacity();
+
+    String pop();
+
+    boolean push(String str);
+}
+
 public class StackApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
