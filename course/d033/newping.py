@@ -1,6 +1,7 @@
+from abc import ABCMeta, abstractmethod
 from tkinter import *
-from threading import Timer
 from random import randint
+from time import time
 
 # import table, ball
 
@@ -29,8 +30,44 @@ class Table:
         self.canvas.itemconfigure(self.scoreboard, text=scores)
 
 
+class MovingItem(metaclass=ABCMeta):
+    def __init__(
+        self, canvas: Canvas, _CanvasItemId: int, init_x, init_y, init_vx, init_vy
+    ):
+        self.canvas = canvas
+        self.item = _CanvasItemId
+        self.x, self.y = self.init_x, self.init_y = init_x, init_y
+        self.vx, self.vy = self.init_vx, self.init_vy = init_vx, init_vy
+
+    @abstractmethod
+    def setcoords(self):
+        pass
+
+    def getcoords(self):
+        self.canvas.coords(self.item)
+
+    def getbbox(self):
+        self.canvas.bbox(self.item)
+
+    def move_constraint(self):
+        pass
+
+    @abstractmethod
+    def move(self):
+        pass
+
+    def stop(self):
+        self.vx, self.vy = 0, 0
+
+
+########################################################################
+
+
 class Ball:
     def __init__(self, table: Table, radius, color, vx, vy, x, y):
+        self.cent_x = 1
+        self.pos_x = 1
+        self.spd_x = 1
         self.radius = radius
         self.x_start, self.y_start = x, y
         self.vx, self.vy = vx, vy
@@ -38,20 +75,18 @@ class Ball:
         self.circle = self.canvas.create_oval(
             x, y, x + 2 * radius, y + 2 * radius, fill=color
         )
-        ##### strange error!!!!
-        print(self.getcord())
 
     def getcord(self):
         return self.canvas.coords(self.circle)
 
     def move_next(self):
-        print(self.vx, self.vy)
         y = self.getcord()[1]
         xmove, ymove = self.vx, self.vy
         uplimit = 3
         if y + self.vy <= uplimit:
             ymove = uplimit - y
             self.vy *= -1
+        self.canvas.update()  # should update before using winfo_height()
         downlimit = self.canvas.winfo_height() - (self.radius * 2 - 3)
         if y + self.vy >= downlimit:
             ymove = downlimit - y
@@ -133,7 +168,7 @@ class Bat:
         self.canvas.move(self.rectangle, 0, ymove)
 
     def move_down(self, event):  # method to bind
-        downlimit = self.canvas.winfo_height - self.height
+        downlimit = self.canvas.winfo_height() - self.height
         y = self.getcord()[1]
         ymove = self.vy
         if y + self.vy >= downlimit:
@@ -146,7 +181,14 @@ class Bat:
 
 # game running function
 def game_flow():
-    global first_serve, score_left, score_right
+    global first_serve, score_left, score_right, startt, cnt
+    start = time()
+    # if cnt == 0:
+    #     cnt += 1
+    # else:
+    #     if cnt % 10 == 0:
+    #         print(1 / ((time() - startt) / cnt))
+    #     cnt += 1
 
     # make ball stop while restart game
     if first_serve == True:
@@ -156,7 +198,6 @@ def game_flow():
     # collision check and give relative speed
     bat_L.detect_collision(my_ball)
     bat_R.detect_collision(my_ball)
-
     # check collision with left wall
     if my_ball.getcord()[0] <= 3:
         my_ball.stop_ball()
@@ -186,7 +227,10 @@ def game_flow():
         my_table.draw_score(score_left, score_right)
 
     my_ball.move_next()
-    master.after(30, game_flow)  # recursion with 30 ms delay
+
+    master.after(
+        max(0, int(30 - time() + start)), game_flow
+    )  # recursion with 30 ms delay
 
 
 # start or restart game
@@ -217,6 +261,11 @@ master.bind("<Down>", bat_R.move_down)
 master.bind("<space>", restart_game)
 
 # run game
+startt = time()
+cnt = 0
+my_ball.start_position()
+bat_L.start_position()
+bat_R.start_position()
 game_flow()
 
 master.mainloop()
