@@ -2,7 +2,7 @@
 
 ## What I learned(Important)
 
-* stack
+* What is stack?
 
 * MVC(model, view, controller)
 
@@ -10,32 +10,11 @@
 
 ## What I studied myself
 
-*
-  *
-* .... (Studying)
-  *
-*
-*
-* .... (Studied)
-  *
-
 ## What I didn't understand
-
-*
-*
-*
 
 ## What I want to know more
 
-* .... (Solving)
-  *
-* .... (Solved)
-
 ## etc(Additional)
-
-*
-*
-*
 
 ## Practice problems
 
