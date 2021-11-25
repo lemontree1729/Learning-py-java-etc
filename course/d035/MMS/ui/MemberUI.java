@@ -28,7 +28,7 @@ public class MemberUI {
             System.out.println("4. member delete");
             System.out.println("5. member search");
             System.out.println("6. exit program");
-            System.out.println("menu num : ");
+            System.out.print("menu num : ");
             menu = sc.nextInt();
             switch (menu) {
             case 1:
