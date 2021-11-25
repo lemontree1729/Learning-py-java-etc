@@ -13,6 +13,7 @@ class Ball(pg.sprite.Sprite):
         self, surface, radius, x_start, y_start, vx_start, vy_start, color=None
     ):
         super().__init__()
+        self.surface = surface
         self.maxh = surface.get_height()
         self.maxw = surface.get_width()
         self.image = pg.Surface((radius * 2, radius * 2))
