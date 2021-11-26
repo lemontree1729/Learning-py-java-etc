@@ -1,5 +1,3 @@
-# pyinstaller --noconsole --onefile pingpong.py
-
 import sys
 from random import randint
 
