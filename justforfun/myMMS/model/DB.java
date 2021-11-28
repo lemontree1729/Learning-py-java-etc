@@ -1,4 +1,4 @@
-package d035.myMMS;
+package model;
 
 import java.util.LinkedHashMap;
 import java.util.Set;
@@ -13,6 +13,10 @@ class DB {
     void put(int id) {
         PersonalData info = new PersonalData();
         data.put(id, info);
+    }
+
+    void put(int id, String key, String value) {
+        data.get(id).put(key, value);
     }
 
     PersonalData get(int id) {
@@ -31,8 +35,7 @@ class DB {
         return data.get(id).keySet();
     }
 
-    void put(int id, String key, String value) {
-        PersonalData info = data.get(id);
-        info.put(key, value);
+    void remove(int id) {
+        data.remove(id);
     }
 }
