@@ -12,66 +12,45 @@ class Controller {
     Scanner sc;
     final String key[] = { "name", "email", "address", "hobby", "tel", "age" };
 
-    void run() {
-        boolean stop = false;
-        Integer toggle;
-        do {
-            MainUI.call();
-            toggle = Validate.inInteger(sc, 0, 7);
-            if (toggle == null)
-                continue;
-            switch (toggle) {
-                case 0: // test mode
-                    testMode();
-                    break;
-                case 1:
-                    register();
-                    break;
-                case 2:
-                    show();
-                    break;
-                case 3:
-                    update();
-                    break;
-                case 4:
-                    delete();
-                    break;
-                case 5:
-                    search();
-                    break;
-                case 6:
-                    initialize();
-                    break;
-                case 7:
-                    stop = true;
-                    MainUI.printExit();
-                    break;
-            }
-        } while (!stop);
+    void run() throws Exception {
+        MainUI.call();
+        int toggle = Validate.inInt(sc, 0, 7);
+        switch (toggle) {
+            case 0: // test mode
+                testMode();
+                break;
+            case 1:
+                register();
+                break;
+            case 2:
+                show();
+                break;
+            case 3:
+                update();
+                break;
+            case 4:
+                delete();
+                break;
+            case 5:
+                search();
+                break;
+            case 6:
+                initialize();
+                break;
+            case 7:
+                throw new ExitException();
+        }
     }
 
-    void register() {
+    void register() throws Exception {
         String value[] = new String[6];
         ControlUI.registerInit();
         ControlUI.inputNewData("id");
-        Integer id = Validate.isInteger(sc);
-        if (!Validate.checkNewID(id, model)) {
-            ControlUI.registerFail();
-            return;
-        }
-        for (
-
-                int i = 0; i < key.length; i++) {
+        int id = Validate.isInt(sc);
+        Validate.checkNewID(id, model);
+        for (int i = 0; i < key.length; i++) {
             ControlUI.inputNewData(key[i]);
-            if (i == 5) {
-                Integer age = Validate.isInteger(sc);
-                if (age == null) {
-                    ControlUI.registerFail();
-                    return;
-                }
-                value[i] = Integer.toString(age);
-            } else
-                value[i] = sc.nextLine();
+            value[i] = i == 5 ? Integer.toString(Validate.isInt(sc)) : sc.nextLine();
         }
         model.makeID(id);
         model.putData(id, key, value);
@@ -85,78 +64,48 @@ class Controller {
             ControlUI.output(text + "\n");
     }
 
-    void update() {
+    void update() throws Exception {
         String newValue[] = new String[6];
         ControlUI.updateInit();
         ControlUI.inputData("id");
-        Integer id = Validate.isInteger(sc);
-        if (!Validate.checkExistID(id, model)) {
-            ControlUI.updateFail();
-            return;
-        }
+        int id = Validate.isInt(sc);
+        Validate.checkExistID(id, model);
         String oldValue[] = model.getData(id);
         for (int i = 0; i < key.length; i++) {
             ControlUI.outputData(key[i], oldValue[i]);
             ControlUI.inputData(key[i]);
-            if (i == 5) {
-                Integer age = Validate.isInteger(sc);
-                if (age == null) {
-                    ControlUI.updateFail();
-                    return;
-                }
-                newValue[i] = Integer.toString(age);
-            } else
-                newValue[i] = sc.nextLine();
+            newValue[i] = i == 5 ? Integer.toString(Validate.isInt(sc)) : sc.nextLine();
         }
         model.putData(id, key, newValue);
         ControlUI.updateSuccess();
     }
 
-    void delete() {
+    void delete() throws Exception {
         ControlUI.deleteInit();
         ControlUI.inputData("id");
-        Integer id = Validate.isInteger(sc);
-        if (!Validate.checkExistID(id, model)) {
-            ControlUI.deleteFail();
-            return;
-        }
+        int id = Validate.isInt(sc);
+        Validate.checkExistID(id, model);
         model.removeData(id);
         ControlUI.deleteSuccess();
     }
 
-    void search() {
+    void search() throws Exception {
         ControlUI.searchInit();
         ControlUI.searchSelect();
-        Integer toggle = Validate.inInteger(sc, 1, 7);
-        if (toggle == null) {
-            ControlUI.searchFail();
-            return;
-        }
-        if (toggle == 1) {
+        int toggle = Validate.inInt(sc, 1, 7) - 2;
+        if (toggle == -1) { // search with id
             ControlUI.inputData("id");
-            Integer id = Validate.isInteger(sc);
-            if (!Validate.checkExistID(id, model)) {
-                ControlUI.searchFail();
-                return;
-            }
+            int id = Validate.isInt(sc);
+            Validate.checkExistID(id, model);
             ControlUI.output(model.toString(id) + "\n");
             ControlUI.searchSuccess();
-        } else {
+        } else { // search with data
             String data = "";
             boolean checkFound = false;
-            ControlUI.inputData(key[toggle - 2]);
-            if (toggle == 7) {
-                Integer age = Validate.isInteger(sc);
-                if (age == null) {
-                    ControlUI.searchFail();
-                    return;
-                }
-                data = Integer.toString(age);
-            } else {
-                data = sc.nextLine();
-            }
+            ControlUI.inputData(key[toggle]);
+            data = toggle == 5 ? Integer.toString(Validate.isInt(sc)) : sc.nextLine();
             for (int id : model.getAllID()) {
-                if (model.getData(id)[toggle - 2].equals(data)) {
+                if (model.getData(id)[toggle].equals(data)) {
                     checkFound = true;
                     ControlUI.output(model.toString(id) + "\n");
                 }
@@ -164,9 +113,8 @@ class Controller {
             if (checkFound)
                 ControlUI.searchSuccess();
             else
-                ControlUI.searchFail();
+                ControlUI.searchNotFound();
         }
-
     }
 
     void initialize() {

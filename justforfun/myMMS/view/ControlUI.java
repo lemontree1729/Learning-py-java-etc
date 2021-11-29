@@ -21,10 +21,6 @@ public class ControlUI {
         System.out.println("=====new member register=====");
     }
 
-    public static void registerFail() {
-        System.out.println("register failed");
-    }
-
     public static void registerSuccess() {
         System.out.println("register success!");
     }
@@ -37,20 +33,12 @@ public class ControlUI {
         System.out.println("=====update member information=====");
     }
 
-    public static void updateFail() {
-        System.out.println("update failed");
-    }
-
     public static void updateSuccess() {
         System.out.println("update success!");
     }
 
     public static void deleteInit() {
         System.out.println("=====delete member information=====");
-    }
-
-    public static void deleteFail() {
-        System.out.println("delete failed");
     }
 
     public static void deleteSuccess() {
@@ -65,8 +53,8 @@ public class ControlUI {
         System.out.print("which to search?(1: id, 2: name, 3: email, 4: address, 5: hobby, 6: tel, 7: age): ");
     }
 
-    public static void searchFail() {
-        System.out.println("search failed");
+    public static void searchNotFound() {
+        System.out.println("search data not found");
     }
 
     public static void searchSuccess() {

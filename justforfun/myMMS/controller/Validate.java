@@ -1,26 +1,62 @@
 package controller;
 
 import java.util.Scanner;
-
 import model.Model;
 import view.ErrorUI;
+import view.MainUI;
+
+class NewIDException extends Exception {
+    NewIDException(int id) {
+        ErrorUI.idExistError(id);
+    }
+}
+
+class ExistIDException extends Exception {
+    ExistIDException(int id) {
+        ErrorUI.idNotFoundError(id);
+    }
+}
+
+class UserInterruptException extends Exception {
+    UserInterruptException() {
+        ErrorUI.userInterrupt();
+    }
+}
+
+class ExitException extends Exception {
+    ExitException() {
+        MainUI.printExit();
+    }
+}
 
 class Validate {
-    static boolean keepContinue(Scanner sc) {
+    static void keepContinue(Scanner sc) throws UserInterruptException {
         ErrorUI.keepContinue();
-        if (sc.nextLine().equals("Y"))
-            return true;
-        return false;
+        if (!sc.nextLine().equals("Y"))
+            throw new UserInterruptException();
     }
 
-    static Integer isInteger(Scanner sc) {
+    static void validRun(Controller main) {
+        do {
+            try {
+                main.run();
+            } catch (ExitException eee) {
+                break;
+            } catch (UserInterruptException | NewIDException | ExistIDException ee) {
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } while (true);
+    }
+
+    static int isInt(Scanner sc) throws UserInterruptException {
         int cnt = 0;
         do {
             try {
                 return Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                if (!Validate.keepContinue(sc))
-                    break;
+                Validate.keepContinue(sc);
                 if (cnt < 3)
                     ErrorUI.notIntError1();
                 else
@@ -28,10 +64,9 @@ class Validate {
                 cnt++;
             }
         } while (true);
-        return null;
     }
 
-    static Integer inInteger(Scanner sc, int n, int m) {
+    static int inInt(Scanner sc, int n, int m) throws UserInterruptException {
         int num, temp;
         if (n > m) {
             temp = n;
@@ -39,37 +74,23 @@ class Validate {
             m = temp;
         }
         do {
-            try {
-                num = Integer.parseInt(sc.nextLine());
-                if (n <= num && num <= m) {
-                    return num;
-                }
-
-            } catch (NumberFormatException e) {
-                if (!Validate.keepContinue(sc))
-                    break;
+            num = isInt(sc);
+            if (n <= num && num <= m)
+                return num;
+            else {
+                Validate.keepContinue(sc);
                 ErrorUI.intRangeError(n, m);
             }
         } while (true);
-        return null;
     }
 
-    static boolean checkNewID(Integer id, Model model) {
-        if (id == null)
-            return false;
-        if (model.isExistID(id)) {
-            ErrorUI.idExistError(id);
-            return false;
-        }
-        return true;
-    }
-
-    static boolean checkExistID(Integer id, Model model) {
-        if (id == null)
-            return false;
+    static void checkNewID(int id, Model model) throws NewIDException {
         if (model.isExistID(id))
-            return true;
-        ErrorUI.idNotFoundError(id);
-        return false;
+            throw new NewIDException(id);
+    }
+
+    static void checkExistID(int id, Model model) throws ExistIDException {
+        if (!model.isExistID(id))
+            throw new ExistIDException(id);
     }
 }

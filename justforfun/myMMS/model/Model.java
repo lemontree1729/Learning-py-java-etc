@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Set;
-
 public class Model {
     protected DB dataBase = new DB();
 
@@ -43,8 +41,11 @@ public class Model {
         return result;
     }
 
-    public Set<Integer> getAllID() {
-        return dataBase.getKeySet();
+    public int[] getAllID() {
+        int cnt = 0, result[] = new int[dataBase.getKeySet().size()];
+        for (int i : dataBase.getKeySet())
+            result[cnt++] = i;
+        return result;
     }
 
     public void removeData(int id) {
