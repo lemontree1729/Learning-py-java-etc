@@ -29,6 +29,7 @@ MINT = (0, 255, 255)
 YELLOW = (255, 255, 0)
 MAX_WIDTH, MAX_HEIGHT = 600, 400
 score_left, score_right = 0, 0
+updating = False
 
 
 def main():
@@ -56,9 +57,6 @@ def main():
     topEnd = EndLine(screen, "horizontal", 0)
     bottomEnd = EndLine(screen, "horizontal", MAX_HEIGHT - 1)
     endLines.add(leftEnd, rightEnd, topEnd, bottomEnd)
-
-    # global variable
-    updating = False
 
     while 1:
         run_game()

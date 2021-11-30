@@ -2,6 +2,8 @@ from abc import ABCMeta, abstractmethod
 import pygame as pg
 from random import randint
 
+from pygame.sprite import Group
+
 
 def randomBrightRGB():
     rgb = 0, 0, 0
@@ -103,6 +105,34 @@ class MovingObject(pg.sprite.Sprite):
     def draw(self, surface: pg.Surface):
         surface.blit(self.image, self.rect)
 
+    def xyGroupCollide(self, group: Group, x=True, y=True, kill=False):
+        if not self.multiCollide and self.collided:
+            return
+        else:
+            result = pg.sprite.spritecollide(self, group, kill, pg.sprite.collide_rect)
+            if result:
+                self.collided = True
+                for target in result:
+                    target.collided = True
+                if x:
+                    self.vx *= -1
+                if y:
+                    self.vy *= -1
+            return result
+
+    def xyCollide(self, target, x=True, y=True):  # inelasticCollide
+        if not self.multiCollide and self.collided:
+            return
+        else:
+            result = pg.sprite.collide_rect(self, target)
+            if result:
+                self.collided = True
+                if x:
+                    self.vx *= -1
+                if y:
+                    self.vy *= -1
+            return result
+
 
 class Ball(MovingObject):
     def __init__(self, radius, surface=None, cord=None, spd=(0, 0), color=randomBrightRGB()):
@@ -123,6 +153,31 @@ class Ball(MovingObject):
 
     def changeRadius(self, radius):
         self.changeImage(self.makeImage(radius, self.color))
+
+    def ballCollide(self, target):  # collide that exchanges their valocity
+        if not self.multiCollide and self.collided:
+            return
+        else:
+            result = pg.sprite.collide_circle(self, target)
+            if result:
+                self.collided, target.collided = True, True
+                x1, y1 = self.rect.center
+                x2, y2 = target.rect.center
+                rvx, rvy = target.vx - self.vx, target.vy - self.vy
+                value = 10000  # just big number
+                c0 = (self.radius + target.radius) ** 2
+                xr, yr = 0, 0
+                for i in range(5):
+                    x, y = x2 - x1 - i * rvx / 5, y2 - y1 - i * rvy / 5
+                    temp = abs(x ** 2 + y ** 2 - c0)
+                    if temp < value:
+                        value = temp
+                        xr, yr = x, y
+                nv = pg.math.Vector2(xr, yr)
+                # nv = pg.math.Vector2(x2 - x1, y2 - y1) just for simple
+                v = pg.math.Vector2(self.vx, self.vy).reflect(nv)
+                self.vx, self.vy = v.x, v.y
+            return result
 
 
 class Bat(pg.sprite.Sprite):
@@ -189,46 +244,6 @@ class EndLine(pg.sprite.Sprite):
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)
-
-
-def inelasticCollide(
-    origin: MovingObject, group, x=True, y=True, collide=pg.sprite.collide_rect, kill=False, default=True
-):
-    if not default:
-        default = not self.collided
-    result = pg.sprite.spritecollide(self, group, kill, collide)
-    if result and default:
-        self.collided = True
-        if x:
-            self.vx *= -1
-        if y:
-            self.vy *= -1
-    return result
-
-
-# ball should exchange their valocity
-def elasticCollide(self, target, default=True):
-    if not default:
-        default = not self.collided
-    result = pg.sprite.collide_circle(self, target)
-    if result and default:
-        x1, y1 = self.rect.center
-        x2, y2 = target.rect.center
-        rvx, rvy = target.vx - self.vx, target.vy - self.vy
-        value = 10000
-        c0 = (self.radius + target.radius) ** 2
-        xr, yr = 0, 0
-        for i in range(5):
-            x, y = x2 - x1 - i * rvx / 5, y2 - y1 - i * rvy / 5
-            temp = abs(x ** 2 + y ** 2 - c0)
-            if temp < value:
-                value = temp
-                xr, yr = x, y
-        nv = pg.math.Vector2(xr, yr)
-        # nv = pg.math.Vector2(x2 - x1, y2 - y1) just for simple
-        v = pg.math.Vector2(self.vx, self.vy).reflect(nv)
-        self.vx, self.vy = v.x, v.y
-    return result
 
 
 def specialCollide(self, target, x=True, y=True, sensitivity=5, default=True):
