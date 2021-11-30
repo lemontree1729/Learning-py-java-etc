@@ -1,7 +1,7 @@
 import sys
 from random import randint
-
-from pgtools import *
+from collections import deque
+from movingobject import *
 
 # make error if pygame is not installed
 try:
@@ -31,12 +31,27 @@ balls.add(Ball(10, spd=(10, 10)))
 bat = Bat((100, 15), cord=(300, 375))
 bottomLine = BorderLine(direction="horizontal", pos=MAX_HEIGHT - 1)
 cnt = 10
+ball1 = Ball(10, spd=(-10, 10))
+centers = deque([])
 while 1:
+    v1 = pg.math.Vector2(1, -2)
+    v2 = pg.math.Vector2(1, 0)
+    v3 = v1.reflect(v2)
+    print(v1, v2, v3)
+    print(v2 - v1)
+    screen.fill(BLACK)
     for event in pg.event.get():
         if event.type == pg.QUIT:
             pg.quit()
             sys.exit()
     pressed_keys = pg.key.get_pressed()
+    for center in centers:
+        pg.draw.circle(screen, randomBrightRGB(), center, 2)
+    centers.append(ball1.rect.center)
+    if len(centers) > 15:
+        centers.popleft()
+    ball1.update()
+    ball1.draw(screen)
     if pressed_keys[pg.K_LEFT]:
         bat.moveOnce((-20, 0))
     if pressed_keys[pg.K_RIGHT]:
@@ -46,10 +61,6 @@ while 1:
         ball.xyCollide(bat, x=False)
     balls.update()
     bat.update()
-    screen.fill(BLACK)
-    bottomLine.draw(screen)
-    balls.draw(screen)
-    bat.draw(screen)
     cnt -= 1
     if cnt < 0:
         balls.add(Ball(10, spd=(10, 10)))
@@ -57,5 +68,8 @@ while 1:
         for ball in balls:
             ball.changeRadius(10 + (ball.radius + 2) % 10)
         cnt = 10
+    bottomLine.draw(screen)
+    balls.draw(screen)
+    bat.draw(screen)
     pg.display.update()
     fpscheck.tick(FPS)

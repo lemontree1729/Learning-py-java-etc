@@ -1,4 +1,3 @@
-from abc import ABCMeta, abstractmethod
 import pygame as pg
 from random import randint
 
@@ -27,7 +26,6 @@ class MovingObject(pg.sprite.Sprite):
         self.multiCollide = True
         self.collided = False
 
-    @abstractmethod  # define how to make image
     def makeImage(self):
         pass
 
@@ -36,23 +34,6 @@ class MovingObject(pg.sprite.Sprite):
         temp = self.rect.center
         self.rect = self.image.get_rect()
         self.rect.center = temp
-
-    # speed limit for preventing penetration
-    # @property
-    # def vx(self):
-    #     return self._vx
-
-    # @vx.setter
-    # def vx(self, vx):
-    #     self._vx = vx / abs(vx) * min(self.rect.width / 2, abs(vx))
-
-    # @property
-    # def vy(self):
-    #     return self._vx
-
-    # @vy.setter
-    # def vy(self, vy):
-    #     self._vy = vy / abs(vy) * min(self.rect.height / 2, abs(vy))
 
     @property
     def cord(self):
@@ -100,7 +81,7 @@ class MovingObject(pg.sprite.Sprite):
         surface.blit(self.image, self.rect)
 
     def xyCollide(self, target, x=True, y=True, weight=0):
-        if not self.multiCollide and self.collided:
+        if not self.multiCollide:  # and self.collided:
             return
         result = pg.sprite.collide_rect(self, target)
         if result:
@@ -147,6 +128,10 @@ class Ball(MovingObject):
         pg.draw.circle(image, self.color, (self.radius, self.radius), self.radius, 0)
         return image
 
+    def changeColor(self, color=None):
+        self.color = color or randomBrightRGB()
+        self.changeImage(self.makeImage(self.radius, self.color))
+
     def changeRadius(self, radius):
         self.changeImage(self.makeImage(radius, self.color))
 
@@ -162,8 +147,8 @@ class Ball(MovingObject):
             value = 10000
             c0 = (self.radius + target.radius) ** 2
             xr, yr = 0, 0
-            for i in range(5):
-                x, y = x2 - x1 - i * rvx / 5, y2 - y1 - i * rvy / 5
+            for i in range(10):
+                x, y = x2 - x1 - i * rvx / 10, y2 - y1 - i * rvy / 10
                 temp = abs(x ** 2 + y ** 2 - c0)
                 if temp < value:
                     value = temp
@@ -172,6 +157,37 @@ class Ball(MovingObject):
             # nv = pg.math.Vector2(x2 - x1, y2 - y1) just for simple
             v = pg.math.Vector2(self.vx, self.vy).reflect(nv)
             self.vx, self.vy = v.x, v.y
+            print("ball collide", self.vx, self.vy)
+        return result
+
+    def realisticCollide(self, target, accurate=100):  # Most realistic but not fun enough
+        if self.collided and target.collided:
+            return
+        result = pg.sprite.collide_circle(self, target)
+        if result:
+            self.collided, target.collided = True, True
+            originPos = pg.math.Vector2(self.rect.center)
+            originSpd = pg.math.Vector2(self.spd)
+            targetPos = pg.math.Vector2(target.rect.center)
+            targetSpd = pg.math.Vector2(target.spd)
+            inaccRelativePos = targetPos - originPos
+            relativeSpd = targetSpd - originSpd
+            approxValue = 10000  # just big value
+            wantedValue = (self.radius + target.radius) ** 2
+            n = accurate
+            for i in range(n):
+                tempPos = inaccRelativePos - i * relativeSpd / n
+                tempValue = abs(tempPos.length_squared() - wantedValue)
+                if tempValue < approxValue:  # approxValue goes to wantedValue
+                    approxValue = tempValue
+                    accRelativePos = tempPos
+            # nv = pg.math.Vector2(x2 - x1, y2 - y1) just for simple
+            reflectOriginSpd = pg.math.Vector2(self.vx, self.vy).reflect(accRelativePos)
+            reflectTargetSpd = pg.math.Vector2(target.vx, target.vy).reflect(accRelativePos)
+            collideOriginSpd = (originSpd + reflectOriginSpd) / 2 + (targetSpd - reflectTargetSpd) / 2
+            collideTargetSpd = (targetSpd + reflectTargetSpd) / 2 + (originSpd - reflectOriginSpd) / 2
+            self.vx, self.vy = collideOriginSpd.x, collideOriginSpd.y
+            target.vx, target.vy = collideTargetSpd.x, collideTargetSpd.y
             print("ball collide", self.vx, self.vy)
         return result
 

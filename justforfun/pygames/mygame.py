@@ -1,0 +1,2 @@
+class pingpong:
+    pass
