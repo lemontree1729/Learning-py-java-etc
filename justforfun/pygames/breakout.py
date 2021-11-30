@@ -27,10 +27,10 @@ screen = pg.display.set_mode((MAX_WIDTH, MAX_HEIGHT))  # main surface
 pg.display.set_caption("Breakout Game")
 
 # bat group
-bat_D = Bat(screen, 100, 15, MAX_WIDTH / 2, MAX_HEIGHT - 30, MINT)
-bat_D.k_up, bat_D.k_down = None, None
+bat_B = Bat(screen, 100, 15, MAX_WIDTH / 2, MAX_HEIGHT - 30, MINT)
+bat_B.k_up, bat_B.k_down = None, None
 bats = pg.sprite.Group()
-bats.add(bat_D)
+bats.add(bat_B)
 
 # brick group
 def makeBricks(n, m, color=None):
@@ -78,26 +78,19 @@ def displayWinScreen():
 
 
 def displayLoseScreen():
-    text_lose = font.render("You lose!!!", True, GREEN, BLUE)
+    text_lose = font.render("You lose!!!", True, GREEN, LUE)
     text_loseRect = text_lose.get_rect()
     text_loseRect.center = (MAX_WIDTH / 2, MAX_HEIGHT / 2)
     screen.blit(text_lose, text_loseRect)
 
 
-def drawAll():
-    bottomEnd.draw(screen)
-    bricks.draw(screen)
-    bats.draw(screen)
-    balls.draw(screen)
-
-
 while 1:
-    screen.fill(BLACK)
     for event in pg.event.get():
         # pressing exit
         if event.type == pg.QUIT:
             pg.quit()
             sys.exit()
+    screen.fill(BLACK)
     if pg.key.get_pressed()[pg.K_SPACE]:
         winScreen, loseScreen = False, False
         balls = pg.sprite.Group()
@@ -106,7 +99,7 @@ while 1:
         bricks = makeBricks(3, brickNum)
         fpstick = FPS * 8
         game_run = True
-        bat_D.changeSize(100, bat_D.rect.height)
+        bat_B.changeSize(100, bat_B.rect.height)
     if winScreen:
         displayWinScreen()
     elif loseScreen:
@@ -125,12 +118,12 @@ while 1:
                     loseScreen = True
             bricks.add(*makeBricks(1, brickNum))
             ball.vy += 2 * ball.vy / abs(ball.vy)
-            newWidth = max(50, bat_D.image.get_width() - 10)
-            bat_D.changeSize(newWidth, bat_D.rect.height)
+            newWidth = max(50, bat_B.image.get_width() - 10)
+            bat_B.changeSize(newWidth, bat_B.rect.height)
             fpstick = FPS * 8
         for ball in balls:
             balls.remove(ball)
-            ball.specialCollide(bat_D, x=False, sensitivity=10)
+            ball.specialCollide(bat_B, x=False, sensitivity=10)
             ball.inelasticCollide(verLines, y=False)
             endCheck = ball.inelasticCollide(horLines, x=False) or []
             if bottomEnd in endCheck:
@@ -141,7 +134,10 @@ while 1:
                 ball.inelasticCollide(bricks, kill=True, x=False)
                 ball.update()
                 balls.add(ball)
-    bat_D.update()
-    drawAll()
+    bat_B.update()
+    bottomEnd.draw(screen)
+    bricks.draw(screen)
+    bats.draw(screen)
+    balls.draw(screen)
     pg.display.update()
     fpscheck.tick(FPS)

@@ -2,6 +2,8 @@ from abc import ABCMeta, abstractmethod
 import pygame as pg
 from random import randint
 
+from pygame.sprite import Group
+
 
 def randomBrightRGB():
     rgb = 0, 0, 0
@@ -64,29 +66,23 @@ class MovingObject(pg.sprite.Sprite):
         self.move()
 
     def move(self):
-        boundaryMove = False
+        self.rect.move_ip(self.vx, self.vy)
         if self.rect.top < 0:
             self.rect.top = 0
             self.vy = abs(self.vy)
-            boundaryMove = True
         if self.rect.bottom > self.maxh:
             self.rect.bottom = self.maxh
             self.vy = -abs(self.vy)
-            boundaryMove = True
         if self.rect.right > self.maxw:
             self.rect.right = self.maxw
             self.vx = -abs(self.vx)
-            boundaryMove = True
         if self.rect.left < 0:
             self.rect.left = 0
             self.vx = abs(self.vx)
-            boundaryMove = True
-        if not boundaryMove:
-            self.rect.move_ip(self.vx, self.vy)
         self.collided = False
 
-    def moveOnce(self, vx, vy):
-        self.vx, self.vy = vx, vy
+    def moveOnce(self, spd):
+        self.vx, self.vy = spd
         self.move()
         self.vx, self.vy = 0, 0
 
@@ -103,19 +99,49 @@ class MovingObject(pg.sprite.Sprite):
     def draw(self, surface: pg.Surface):
         surface.blit(self.image, self.rect)
 
+    def xyCollide(self, target, x=True, y=True, weight=0):
+        if not self.multiCollide and self.collided:
+            return
+        result = pg.sprite.collide_rect(self, target)
+        if result:
+            self.collided = True
+            if x:
+                self.vx *= -1
+                if weight:
+                    ratio = (self.rect.centery - target.rect.centery) / (target.rect.height / 2)
+                    self.vy = weight * abs(self.vx) * ratio
+            if y:
+                self.vy *= -1
+                if weight:
+                    ratio = (self.rect.centerx - target.rect.centerx) / (target.rect.width / 2)
+                    self.vx = weight * abs(self.vy) * ratio
+            print("xy collide", self.vx, self.vy)
+        return result
+
+    def xyGroupCollide(self, group: Group, x=True, y=True, kill=False):
+        if not self.multiCollide and self.collided:
+            return
+        result = pg.sprite.spritecollide(self, group, kill, pg.sprite.collide_rect)
+        if result:
+            self.collided = True
+            if x:
+                self.vx *= -1
+            if y:
+                self.vy *= -1
+            print("xygroup collide", self.vx, self.vy)
+        return result
+
 
 class Ball(MovingObject):
-    def __init__(self, radius, surface=None, cord=None, spd=(0, 0), color=randomBrightRGB()):
+    def __init__(self, radius, cord=None, spd=(0, 0), color=None, surface=None):
         self.radius = radius
-        self.multiCollide = False
-        self.color = color
+        self.color = color or randomBrightRGB()
         super().__init__(surface, cord, spd)
+        self.multiCollide = False
 
     def makeImage(self, radius=None, color=None):
-        if color != None:
-            self.color = color
-        if radius != None:
-            self.radius = radius
+        self.radius = radius or self.radius
+        self.color = color or self.color
         image = pg.Surface((self.radius * 2, self.radius * 2))
         image.set_colorkey((0, 0, 0))
         pg.draw.circle(image, self.color, (self.radius, self.radius), self.radius, 0)
@@ -124,43 +150,57 @@ class Ball(MovingObject):
     def changeRadius(self, radius):
         self.changeImage(self.makeImage(radius, self.color))
 
+    def ballCollide(self, target):  # Collide that acts like a ball
+        if not self.multiCollide and self.collided:
+            return
+        result = pg.sprite.collide_circle(self, target)
+        if result:
+            self.collided = True
+            x1, y1 = self.rect.center
+            x2, y2 = target.rect.center
+            rvx, rvy = target.vx - self.vx, target.vy - self.vy
+            value = 10000
+            c0 = (self.radius + target.radius) ** 2
+            xr, yr = 0, 0
+            for i in range(5):
+                x, y = x2 - x1 - i * rvx / 5, y2 - y1 - i * rvy / 5
+                temp = abs(x ** 2 + y ** 2 - c0)
+                if temp < value:
+                    value = temp
+                    xr, yr = x, y
+            nv = pg.math.Vector2(xr, yr)
+            # nv = pg.math.Vector2(x2 - x1, y2 - y1) just for simple
+            v = pg.math.Vector2(self.vx, self.vy).reflect(nv)
+            self.vx, self.vy = v.x, v.y
+            print("ball collide", self.vx, self.vy)
+        return result
 
-class Bat(pg.sprite.Sprite):
-    def __init__(self, size, surface=None, cord=None, spd=(0, 0), color=randomBrightRGB()):
+
+class Bat(MovingObject):
+    def __init__(self, size, cord=None, spd=(0, 0), color=None, surface=None):
         self.width, self.height = size
-        self.color = color
-
-        self.k_up, self.k_down = pg.K_UP, pg.K_DOWN
-        self.k_left, self.k_right = pg.K_LEFT, pg.K_RIGHT
+        self.color = color or randomBrightRGB()
+        self.k_up, self.k_down, self.k_right, self.k_left = (None,) * 4
+        super().__init__(surface, cord, spd)
 
     def makeImage(self, width=None, height=None, color=None):
-        if color != None:
-            self.color = color
-        if width != None:
-            self.width = width
-        if height != None:
-            self.height = height
-        image = pg.Surface(self.width, self.height)
-        pg.draw.rect(image, self.color, (0, 0, width, height))
+        self.width = width or self.width
+        self.height = height or self.height
+        self.color = color or self.color
+        image = pg.Surface((self.width, self.height))
+        image.fill(self.color)
         return image
 
-    def changeSize(self, radius):
-        pass
-
-    # def update(self):
-    #     pressed_keys = pg.key.get_pressed()
-    #     if self.rect.top > 0:
-    #         if self.k_up != None and pressed_keys[self.k_up]:
-    #             self.rect.move_ip(0, -20)
-    #     if self.rect.bottom < self.maxh:
-    #         if self.k_down != None and pressed_keys[self.k_down]:
-    #             self.rect.move_ip(0, 20)
-    #     if self.rect.left > 0:
-    #         if self.k_left != None and pressed_keys[self.k_left]:
-    #             self.rect.move_ip(-20, 0)
-    #     if self.rect.right < self.maxw:
-    #         if self.k_right != None and pressed_keys[self.k_right]:
-    #             self.rect.move_ip(20, 0)
+    def keyMove(self, tick):
+        pressed_keys = pg.key.get_pressed()
+        if self.k_up != None and pressed_keys[self.k_up]:
+            self.moveOnce((0, -tick))
+        if self.k_down != None and pressed_keys[self.k_down]:
+            self.moveOnce((0, tick))
+        if self.k_left != None and pressed_keys[self.k_left]:
+            self.moveOnce((-tick, 0))
+        if self.k_right != None and pressed_keys[self.k_right]:
+            self.moveOnce((tick, 0))
 
     def changeSize(self, width, height):
         temp = self.rect.center
@@ -172,78 +212,30 @@ class Bat(pg.sprite.Sprite):
         surface.blit(self.image, self.rect)
 
 
-class EndLine(pg.sprite.Sprite):
-    def __init__(self, surface, direction, pos, color=None):
-        super().__init__()
-        self.maxh = surface.get_height()
-        self.maxw = surface.get_width()
-        if direction == "vertical":
-            self.image = pg.Surface((1, self.maxh))
-            self.rect = self.image.get_rect()
-            self.rect.top, self.rect.left = 0, pos
-        elif direction == "horizontal":
-            self.image = pg.Surface((self.maxw, 1))
-            self.rect = self.image.get_rect()
-            self.rect.top, self.rect.left = pos, 0
-        self.image.fill(color or (255, 255, 255))
+class BorderLine(MovingObject):
+    def __init__(self, direction="vertical", pos=1, thickness=1, color=None, surface=None):
+        self.direction = direction
+        self.pos = pos
+        self.thickness = thickness
+        self.color = color or randomBrightRGB()
+        surface = surface or pg.display.get_surface()
+        if self.direction == "vertical":
+            cord = (pos, surface.get_height() / 2)
+        elif self.direction == "horizontal":
+            cord = (surface.get_width() / 2, pos)
+        super().__init__(surface, cord, (0, 0))
+
+    def makeImage(self, direction=None, pos=None, thickness=None, color=None):
+        self.direction = direction or self.direction
+        self.pos = pos or self.pos
+        self.thickness = thickness or self.thickness
+        self.color = color or self.color
+        if self.direction == "vertical":
+            image = pg.Surface((self.thickness, self.maxh))
+        elif self.direction == "horizontal":
+            image = pg.Surface((self.maxw, self.thickness))
+        image.fill(self.color)
+        return image
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)
-
-
-def inelasticCollide(
-    origin: MovingObject, group, x=True, y=True, collide=pg.sprite.collide_rect, kill=False, default=True
-):
-    if not default:
-        default = not self.collided
-    result = pg.sprite.spritecollide(self, group, kill, collide)
-    if result and default:
-        self.collided = True
-        if x:
-            self.vx *= -1
-        if y:
-            self.vy *= -1
-    return result
-
-
-# ball should exchange their valocity
-def elasticCollide(self, target, default=True):
-    if not default:
-        default = not self.collided
-    result = pg.sprite.collide_circle(self, target)
-    if result and default:
-        x1, y1 = self.rect.center
-        x2, y2 = target.rect.center
-        rvx, rvy = target.vx - self.vx, target.vy - self.vy
-        value = 10000
-        c0 = (self.radius + target.radius) ** 2
-        xr, yr = 0, 0
-        for i in range(5):
-            x, y = x2 - x1 - i * rvx / 5, y2 - y1 - i * rvy / 5
-            temp = abs(x ** 2 + y ** 2 - c0)
-            if temp < value:
-                value = temp
-                xr, yr = x, y
-        nv = pg.math.Vector2(xr, yr)
-        # nv = pg.math.Vector2(x2 - x1, y2 - y1) just for simple
-        v = pg.math.Vector2(self.vx, self.vy).reflect(nv)
-        self.vx, self.vy = v.x, v.y
-    return result
-
-
-def specialCollide(self, target, x=True, y=True, sensitivity=5, default=True):
-    if not default:
-        default = not self.collided
-    result = pg.sprite.collide_rect(self, target)
-    if result and default:
-        self.collided = True
-        if x:
-            self.vx *= -1
-            ratio = (self.rect.centery - target.rect.centery) / (target.rect.height / 2)
-            self.vy = sensitivity * ratio
-        if y:
-            self.vy *= -1
-            ratio = (self.rect.centerx - target.rect.centerx) / (target.rect.width / 2)
-            self.vx = sensitivity * ratio
-        print("collide", self.vx, self.vy)
-    return result
