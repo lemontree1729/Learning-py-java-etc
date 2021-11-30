@@ -99,26 +99,25 @@ modalFooter.append(closeButton)
 
 // practice 3
 const h4 = body.querySelector('h4')
-console.log(h4.innerText)
+console.log("h4.innerText", h4.innerText)
 h4.innerText = "foods that i want to eat right now"
 
 // practice 4
 const profile = body.querySelector('div#profile-menu')
-console.log(profile)
+console.log("profile", profile)
 profile.firstElementChild.src = './src/owl.jpg'
 
 // practice 5
 const thirdimg = photoList.querySelector('div:nth-of-type(3)>div>img')
-console.log(thirdimg)
+console.log("thirdimg", thirdimg)
 thirdimg.src = './src/pizza.jpg'
 
 // practice 6
 const fifthdiv = photoList.querySelector('div:nth-of-type(5)>div:nth-of-type(2)')
-console.log(fifthdiv)
+console.log("fifthdiv", fifthdiv)
 fifthdiv.innerText = 'sunrise'
 
 // practice 7
-const target = body.querySelectorAll('.modal-window')
-console.log(target)
-for (let i in target)
-    i.className = 'modal-window open'
+const target = body.querySelector('.modal-window')
+console.log("target", target)
+target.className = 'modal-window hide'
