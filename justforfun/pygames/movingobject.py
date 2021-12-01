@@ -81,7 +81,7 @@ class MovingObject(pg.sprite.Sprite):
         surface.blit(self.image, self.rect)
 
     def xyCollide(self, target, x=True, y=True, weight=0):
-        if not self.multiCollide:  # and self.collided:
+        if not self.multiCollide and self.collided:
             return
         result = pg.sprite.collide_rect(self, target)
         if result:
@@ -188,7 +188,7 @@ class Ball(MovingObject):
             collideTargetSpd = (targetSpd + reflectTargetSpd) / 2 + (originSpd - reflectOriginSpd) / 2
             self.vx, self.vy = collideOriginSpd.x, collideOriginSpd.y
             target.vx, target.vy = collideTargetSpd.x, collideTargetSpd.y
-            print("ball collide", self.vx, self.vy)
+            print("realistic collide", self.vx, self.vy)
         return result
 
 
