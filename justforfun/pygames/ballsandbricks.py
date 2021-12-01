@@ -20,11 +20,14 @@ except ModuleNotFoundError:
     sys.exit(1)
 
 pg.init()  # <-------------- initialize pygame
-pg.display.set_caption("Balls and Bats")
+pg.display.set_caption("Balls and Bricks")
 
 ########## common ############
 # global variables
 FPS = 30
+PURPLE = (102, 0, 153)
+DARKBLUE = (0, 0, 139)
+SKYBLUE = (135, 206, 235)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
@@ -32,15 +35,21 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 MINT = (0, 255, 255)
 YELLOW = (255, 255, 0)
+GRAY = (128, 128, 128)
 MAX_WIDTH, MAX_HEIGHT = 600, 400
-TEXTFONT = pg.font.SysFont("Ink Free", 50)
+BIGINKFONT = pg.font.SysFont("Ink Free", 50)
+SMALLCAMBRIAFONT = pg.font.SysFont("Cambria", 25)
+SMALLARIALFONT = pg.font.SysFont("Arial", 25)
+SMALLGEORGIAFONT = pg.font.SysFont("Gerogia", 25)
 FPSCHECK = pg.time.Clock()
 SCREEN = pg.display.set_mode((MAX_WIDTH, MAX_HEIGHT))  # main surface
 PINGPONGTICK = 3 * FPS
 BREAKOUTTICK = 8 * FPS
 fpstick = -7  # give minus tick to check whether init or not
+titletick = 1.5 * FPS
 
 # ball group
+titleBall = Ball(15, (450, 150), (0, -10), RED)
 balls = pg.sprite.Group()
 
 # bat group
@@ -57,7 +66,7 @@ borderLines.add(topEnd, bottomEnd, rightEnd, leftEnd)
 # screen variables
 titleScreen = True
 menuScreen = False
-pingpongManualScreen = False
+manualScreen = False
 pingpongScreen = False
 breakoutScreen = False
 forfunScreen = False
@@ -76,9 +85,10 @@ def showText(SCREEN: pg.Surface, font: Font, text, center, color, background):
     return SCREEN.blit(text, textRect)
 
 
-def keyToggle(key):
-    if pg.key.get_pressed()[key]:
-        return (False, True)
+def keyToggle(events, key):
+    for event in events:
+        if event.type == pg.KEYDOWN and pg.key.get_pressed()[key]:
+            return (False, True)
 
 
 def mouseOver(rect: pg.Rect, cursor):
@@ -100,9 +110,9 @@ def pingpongInit():
     fpstick = PINGPONGTICK
     pingpongPause = True
     score_left, score_right = 5, 5
-    bat_R = Bat(size=(10, 400), cord=(575, MAX_HEIGHT / 2), color=YELLOW)
+    bat_R = Bat(size=(10, 100), cord=(575, MAX_HEIGHT / 2), color=YELLOW)
     bat_R.k_up, bat_R.k_down = pg.K_UP, pg.K_DOWN
-    bat_L = Bat(size=(10, 400), cord=(25, MAX_HEIGHT / 2), color=MINT)
+    bat_L = Bat(size=(10, 100), cord=(25, MAX_HEIGHT / 2), color=MINT)
     bat_L.k_up, bat_L.k_down = pg.K_w, pg.K_s
     bats = pg.sprite.Group()
     bats.add(bat_L, bat_R)
@@ -114,11 +124,11 @@ def pingpongEnd():
     global score_left, score_right
     if score_left <= 0 or score_right <= 0:
         if score_left > score_right:
-            showText(SCREEN, TEXTFONT, "Left win!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
+            showText(SCREEN, BIGINKFONT, "Left win!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
         elif score_left < score_right:
-            showText(SCREEN, TEXTFONT, "Right win!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
+            showText(SCREEN, BIGINKFONT, "Right win!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
         else:
-            showText(SCREEN, TEXTFONT, "Draw!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
+            showText(SCREEN, BIGINKFONT, "Draw!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
         return True
     return False
 
@@ -160,15 +170,15 @@ def breakoutInit():
 def breakoutEnd():
     global bricks, balls
     if len(bricks) == 0:
-        showText(SCREEN, TEXTFONT, "You win!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
+        showText(SCREEN, BIGINKFONT, "You win!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
         return True
     elif len(balls) == 0:
-        showText(SCREEN, TEXTFONT, "You lose!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
+        showText(SCREEN, BIGINKFONT, "You lose!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
         return True
     else:
         for brick in bricks:
             if brick.rect.bottom > MAX_HEIGHT:
-                showText(SCREEN, TEXTFONT, "You lose!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
+                showText(SCREEN, BIGINKFONT, "You lose!!!", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GREEN, BLUE)
                 return True
         return False
 
@@ -182,9 +192,7 @@ def makeBricks(n, m, color=None):
     return bricks
 
 
-################ Etc #########
-
-
+################ for fun #########
 def forfunInit():
     global forfunPause, tracer, lastBall, balls
     forfunPause = True
@@ -206,15 +214,40 @@ while 1:
     ### title screen
     if titleScreen:
         SCREEN.fill(BLACK)
-        titleScreen, menuScreen = keyToggle(pg.K_SPACE) or (titleScreen, menuScreen)
-        showText(SCREEN, TEXTFONT, "press <SPACE> to continue", (MAX_WIDTH / 2, MAX_HEIGHT / 2), BLUE, BLACK)
+        titleScreen, manualScreen = keyToggle(events, pg.K_SPACE) or (titleScreen, manualScreen)
+        bat1 = Bat((150, 15), (450, 50), color=BLUE)
+        bat2 = Bat((150, 15), (450, 250), color=BLUE)
+        bats.add(bat1, bat2)
+        titleBall.xyGroupCollide(bats)
+        titleBall.update()
+        bats.draw(SCREEN)
+        titleBall.draw(SCREEN)
+        showText(SCREEN, SMALLGEORGIAFONT, "@Made by SYJ", (70, 30), GRAY, BLACK)
+        showText(SCREEN, BIGINKFONT, "Balls and", (170, 110), RED, BLACK)
+        showText(SCREEN, BIGINKFONT, "Bricks", (170, 190), BLUE, BLACK)
+        titletick -= 1
+        if titletick > 0.5 * FPS:
+            showText(SCREEN, SMALLARIALFONT, "press <SPACEBAR> to continue", (MAX_WIDTH / 2, 350), WHITE, BLACK)
+        if titletick < 0:
+            titletick = 1.5 * FPS
 
+    elif manualScreen:
+        SCREEN.fill(GRAY)
+        showText(SCREEN, BIGINKFONT, "How to Play", (MAX_WIDTH / 2, 50), SKYBLUE, GRAY)
+        showText(SCREEN, SMALLCAMBRIAFONT, "Move: <Arrow keys>", (210, 110), PURPLE, GRAY)
+        showText(SCREEN, SMALLCAMBRIAFONT, "Pause/Resume: <Spacebar>", (247, 150), PURPLE, GRAY)
+        showText(SCREEN, SMALLCAMBRIAFONT, "Restart: <F5>", (170, 190), PURPLE, GRAY)
+        showText(SCREEN, SMALLCAMBRIAFONT, "Go to menu: <Backspace>", (235, 230), PURPLE, GRAY)
+        showText(SCREEN, SMALLCAMBRIAFONT, "Make balls(in For fun): <Click>", (265, 270), PURPLE, GRAY)
+        showText(SCREEN, SMALLARIALFONT, "press <SPACEBAR> to continue", (MAX_WIDTH / 2, 350), BLACK, GRAY)
+
+        manualScreen, menuScreen = keyToggle(events, pg.K_SPACE) or (manualScreen, menuScreen)
     ### menu screen
     elif menuScreen:
         SCREEN.fill(BLACK)
-        pingpongMenu = showText(SCREEN, TEXTFONT, "Pingpong Game", (200, 100), RED, BLUE)
-        breakoutMenu = showText(SCREEN, TEXTFONT, "Breakout Game", (200, 200), YELLOW, BLUE)
-        forfunMenu = showText(SCREEN, TEXTFONT, "Just for fun", (200, 300), GREEN, BLUE)
+        pingpongMenu = showText(SCREEN, BIGINKFONT, "Pingpong Game", (MAX_WIDTH / 2, 100), RED, BLUE)
+        breakoutMenu = showText(SCREEN, BIGINKFONT, "Breakout Game", (MAX_WIDTH / 2, 200), YELLOW, BLUE)
+        forfunMenu = showText(SCREEN, BIGINKFONT, "Just for fun", (MAX_WIDTH / 2, 300), GREEN, BLUE)
         mouseOver(SCREEN.get_rect(), pg.SYSTEM_CURSOR_ARROW)
         menuScreen, pingpongScreen = mouseToggle(pingpongMenu) or (menuScreen, pingpongScreen)
         menuScreen, breakoutScreen = mouseToggle(breakoutMenu) or (menuScreen, breakoutScreen)
@@ -225,7 +258,7 @@ while 1:
         SCREEN.fill(BLACK)
         if pg.key.get_pressed()[pg.K_F5] or fpstick < -5:
             pingpongInit()
-        if keyToggle(pg.K_BACKSPACE):
+        if keyToggle(events, pg.K_BACKSPACE):
             pingpongScreen, menuScreen = False, True
             pingpongPause = True
             fpstick = -7
@@ -234,6 +267,8 @@ while 1:
                 pingpongPause = not pingpongPause
         if pingpongEnd():
             pingpongPause = True
+        elif pingpongPause:
+            showText(SCREEN, SMALLARIALFONT, "<PAUSED>", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GRAY, BLACK)
         if not pingpongPause:
             fpstick -= 1
             if fpstick == -1 and len(balls) < 80:
@@ -257,8 +292,8 @@ while 1:
         computerMove(10)
         # bat_L.keyMove(20)
         # drawing part
-        showText(SCREEN, TEXTFONT, score_left, (20, 20), GREEN, BLUE)
-        showText(SCREEN, TEXTFONT, score_right, (MAX_WIDTH - 20, 20), GREEN, BLUE)
+        showText(SCREEN, BIGINKFONT, score_left, (20, 20), GREEN, BLUE)
+        showText(SCREEN, BIGINKFONT, score_right, (MAX_WIDTH - 20, 20), GREEN, BLUE)
         borderLines.draw(SCREEN)
         BorderLine("vertical", MAX_WIDTH / 2, color=GREEN).draw(SCREEN)
         balls.draw(SCREEN)
@@ -269,7 +304,7 @@ while 1:
         SCREEN.fill(BLACK)
         if pg.key.get_pressed()[pg.K_F5] or fpstick < -5:
             breakoutInit()
-        if keyToggle(pg.K_BACKSPACE):
+        if keyToggle(events, pg.K_BACKSPACE):
             breakoutScreen, menuScreen = False, True
             breakoutPause = True
             fpstick = -7
@@ -278,6 +313,8 @@ while 1:
                 breakoutPause = not breakoutPause
         if breakoutEnd():
             breakoutPause = True
+        elif breakoutPause:
+            showText(SCREEN, SMALLARIALFONT, "<PAUSED>", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GRAY, BLACK)
         if not breakoutPause:
             fpstick -= 1
             if fpstick == -1:
@@ -309,7 +346,7 @@ while 1:
         SCREEN.fill(BLACK)
         if pg.key.get_pressed()[pg.K_F5] or fpstick < -5:
             forfunInit()
-        if keyToggle(pg.K_BACKSPACE):
+        if keyToggle(events, pg.K_BACKSPACE):
             forfunScreen, menuScreen = False, True
             forfunPause = True
             fpstick = -7
@@ -329,11 +366,12 @@ while 1:
                     ball.realisticCollide(otherball)
                 balls.add(ball)
             balls.update()
-            for center in tracer:
-                pg.draw.circle(SCREEN, randomBrightRGB(), center, 2)
             tracer.append(lastBall.rect.center)
-            balls.draw(SCREEN)
-
+        else:
+            showText(SCREEN, SMALLARIALFONT, "<PAUSED>", (MAX_WIDTH / 2, MAX_HEIGHT / 2), GRAY, BLACK)
+        for center in tracer:
+            pg.draw.circle(SCREEN, randomBrightRGB(), center, 2)
+        balls.draw(SCREEN)
     # update display and wait for tick
     pg.display.update()
     FPSCHECK.tick(FPS)
