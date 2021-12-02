@@ -1,8 +1,8 @@
-# 21/11/05 $lesson-name$
+# 21/12/01 Python lesson
 
 ## What I learned(Important)
 
-*
+* what is database?
   *
 *
     1.
