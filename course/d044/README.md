@@ -1,10 +1,10 @@
-# 21/12/03 Python Lesson
+# 21/12/06 JavaScript Lesson
 
 ## What I learned(Important)
 
-* Big data
-  * RDBMS
-  * No sql
+* Making carosel and selector
+* Making loading screen
+* Making accordion menu
 
 ## What I studied myself
 

@@ -2,15 +2,7 @@
 
 ## What I learned(Important)
 
-* what is database?
-  *
-*
-    1.
-        *
-    2.
-        *
-* [$file-name.extension$]($file-name.extension$)
-    *
+* Adding more functions in pygames
 
 ## What I studied myself
 

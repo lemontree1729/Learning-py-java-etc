@@ -2,18 +2,9 @@
 
 ## What I learned(Important)
 
-* Improving Pygame App
+* Adding realistic collision method to pygame
 
 ## What I studied myself
-
-*
-  *
-* .... (Studying)
-  *
-*
-*
-* .... (Studied)
-  *
 
 ## What I didn't understand
 
