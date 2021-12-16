@@ -3,7 +3,9 @@
 ## What I learned(Important)
 
 * Input and output stream
-  *
+* input vs output and reader vs writer and System.in vs System.out
+  * from input, reader, and System.in, java gains data(information)
+  * from output, writer, and System.out, java has no data change and just show(or give) its data to others
 *
     1.
         *
