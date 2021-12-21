@@ -2,28 +2,32 @@
 /* more information : https://syleemomo.tistory.com/35 */
 
 /* CSS selectors */
-div{ /*1-1. selected by tag */
+div {
+    /*1-1. selected by tag */
     color: tomato;
 }
 
-ul li:nth-child(1){ /*1-2. selected with pseudo-class */
+ul li:nth-child(1) {
+    /*1-2. selected with pseudo-class */
     background: brown;
 }
 
-input:focus{
+input:focus {
     background: yellow;
 }
 
-p::first-line{ /*1-3. selected with pseudo-element */
+p::first-line {
+    /*1-3. selected with pseudo-element */
     color: blue;
     text-transform: uppercase;
 }
 
-p{
+p {
     font-size: 7pt;
 }
 
-#press{ /*2. seleted by id*/
+#press {
+    /*2. seleted by id*/
     all: unset; /* reset default settings */
     background: skyblue;
     cursor: pointer;
@@ -31,19 +35,21 @@ p{
     padding: 10px;
 }
 
-#press::before{
-    content: "🔔"
+#press::before {
+    content: "🔔";
 }
 
-.photo{ /*3. selected by class*/
+.photo {
+    /*3. selected by class*/
     background: turquoise;
 }
 
-div[name="photo-name"]{ /*4. selected by name */
+div[name="photo-name"] {
+    /*4. selected by name */
     background: violet;
 }
 
-#photos{
+#photos {
     width: 200px;
     width: 50%;
     height: 100px;
@@ -56,25 +62,25 @@ div[name="photo-name"]{ /*4. selected by name */
     box-sizing: border-box;
 }
 
-.fonttag p{
+.fonttag p {
     line-height: 10px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     text-align: center;
 }
 
-.fonttag{
+.fonttag {
     width: 200px;
     height: 100px;
-    background-image: url('sources/images/cat.jpg');
+    background-image: url("src/cat.jpg");
 }
 
-#parent{
+#parent {
     width: 200px;
     height: 200px;
     background: powderblue;
 }
 
-#child{
+#child {
     position: relative;
     width: 100px;
     height: 100px;

@@ -69,7 +69,7 @@
 
 ## Useful links
 
-<https://docs.oracle.com/javase/specs/jls/se17/html/index.html>
+<https://docs.oracle.com/javase/specs/jls/se17/html/index.html>  
 <https://compscicentral.com/how-does-java-work/>
 
 ## Practice problems
