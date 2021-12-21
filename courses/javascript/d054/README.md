@@ -2,7 +2,7 @@
 
 ## What I learned(Important)
 
-* dealing with events
+* [dealing with events](keyevent.js) ([view](https://lemontree1729.github.io/coding-academy/courses/javascript/d054/keyevent.html))
 
 ## What I studied myself
 

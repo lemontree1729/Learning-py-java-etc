@@ -1,8 +1,8 @@
-# 21/10/14 Html, CSS lesson
+# 21/10/14 CSS lesson
 
 ## What I learned(Important)
 
-* [How to use css tags](https://lemontree1729.github.io/coding-academy/courses/css/d007/csstags.html)
+* [How to use css tags](csstags.css) ([view](https://lemontree1729.github.io/coding-academy/courses/css/d007/csstags.html))
 
 ## What I studied myself
 
@@ -14,4 +14,5 @@
 
 ## Practice problems
 
-* [photogallery]()
+* [container](cssdivs.css) ([view](https://lemontree1729.github.io/coding-academy/courses/css/d007/cssdivs.html))
+* [photogallery](myphotogallery.css) ([view](https://lemontree1729.github.io/coding-academy/courses/css/d007/myphotogallery.html))

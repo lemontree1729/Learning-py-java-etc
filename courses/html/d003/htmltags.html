@@ -5,58 +5,75 @@
 <html lang="ko">
 
 <head>
-    <!-- can't understad all of meta-->
-    <meta charset="UTF-8" />
-    <!--use " /" for xhtml syntax-->
-    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>title. Simple homepage</title>
-    <link rel="icon" href="" />
+    <link rel="icon" href="">
 </head>
 
 <body>
-    <h1>h1. HTML lesson</h1>
-    <h2>h2. format tag</h2>
-    <p>p. paragraph</p>
-    <a href="https://www.naver.com">a. NAVER</a>
-    <br />
-    <img src="src/cat.jpg" alt="cat picture" width="400px">
-    <h3>h3. order tag</h3>
-    <ul>
-        <li>ul>li. dog
+    <header>
+        <h1>h1. HTML lesson</h1>
+        <nav></nav>
+    </header>
+    <figure></figure>
+    <section>
+        <article>
+            <h2>h2. format tag</h2>
+            <p>p. paragraph</p>
+            <a href="https://www.naver.com">a. naver</a>
+            <br>
+            <img src="src/cat.jpg" alt="cat">
+        </article>
+        <article>
+            <h3>h3. order tag</h3>
             <ul>
-                <li>ul>li>ul>li. like</li>
+                <li>ul>li1. dog
+                    <ul>
+                        <li>ul>li>ul>li1. like</li>
+                        <li>ul>li>ul>li2. hate</li>
+                    </ul>
+                </li>
+                <li>ul>li2. cat</li>
             </ul>
-        </li>
-    </ul>
-    <h4>h4. form tag</h4>
-    <form method="post" action="/">
-        <label for="userid">id &nbsp;&nbsp;&nbsp;:</label>
-        <input type="text" id="userid">
-        <input type="reset" value="Reset!!!">
-        <br />
-        <laber>pwd : </laber>
-        <input type="password">
-        <input type="submit" value="Submit">
-        <br />
-        <input type="checkbox" checked id="rememberid">
-        <label>remember id</label>
-        <br />
-        <input type="file" accept="image/*">
-    </form>
-    <form method="get" action="#">
-        <label><input type="radio" name="fruit" value="strawberry" />Strawberry</label>
-        <label><input type="radio" name="fruit" value="banana" />Banana</label>
-        <input type="text" placeholder="image search" required />
-        <input type="submit" value="Submit" />
-    </form>
-    <h5>h5. etc tag</h5>
-    <audio src="" controls loop muted></audio>
-    <select name="pets" id="pet-select">
-        <option value="select">Please select</option>
-        <option value="dog">Dog</option>
-        <option value="cat">Cat</option>
-    </select>
+        </article>
+        <article>
+            <h4>h4. form tag</h4>
+            <form method="post" action="/">
+                <label for="userid">id &nbsp;&nbsp;&nbsp;:</label>
+                <input type="text" id="userid">
+                <input type="reset" value="Reset!!!">
+                <br>
+                <laber>pwd : </laber>
+                <input type="password">
+                <input type="submit" value="Submit">
+                <br>
+                <input type="checkbox" checked id="rememberid">
+                <label>remember id</label>
+                <br>
+                <input type="file" accept="image/*">
+            </form>
+            <form method="get" action="#">
+                <label><input type="radio" name="fruit" value="strawberry">Strawberry</label>
+                <label><input type="radio" name="fruit" value="banana">Banana</label>
+                <input type="text" placeholder="image search" required>
+                <input type="submit" value="Submit">
+            </form>
+        </article>
+        <article>
+            <h5>h5. etc tag</h5>
+            <audio src="" controls loop muted></audio>
+            <select name="pets" id="pet-select">
+                <option value="select">Please select</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+            </select>
+        </article>
+    </section>
+    <footer>
+        Made by SYJ
+    </footer>
 </body>
 
 </html>

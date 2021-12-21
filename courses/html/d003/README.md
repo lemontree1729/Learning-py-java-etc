@@ -1,8 +1,8 @@
-# 21/10/07 Html lesson
+# 21/10/07 HTML Lesson
 
 ## What I learned(Important)
 
-* [How to use html tags](https://lemontree1729.github.io/coding-academy/courses/html/d003/htmltags.html)
+* [How to use html tags](htmltags.html) ([view](https://lemontree1729.github.io/coding-academy/courses/html/d003/htmltags.html))
 
 ## What I studied myself
 
@@ -13,5 +13,3 @@
 ## etc(Additional)
 
 ## Practice problems
-
-* [test](htmltags.html)
