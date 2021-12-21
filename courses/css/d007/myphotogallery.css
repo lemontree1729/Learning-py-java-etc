@@ -1,18 +1,18 @@
-body{
+body {
     margin: 0;
-    padding: 0;    
+    padding: 0;
 }
-#header{
+#header {
     height: 20vh;
     text-align: center;
 }
-ul{
+ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
-li{
-    background-image: url(../source/image/cat.jpg);
+li {
+    background-image: url(src/cat.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     float: left;
@@ -21,11 +21,11 @@ li{
     width: 20%;
     height: 40vh;
 }
-.ulimg{
+.ulimg {
     width: 100%;
     height: 40vh;
 }
-.imtext{
+.imtext {
     transform: translate(0%, -100%);
     color: white;
     background-color: brown;

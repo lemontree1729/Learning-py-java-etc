@@ -2,7 +2,7 @@
 
 ## What I learned(Important)
 
-* How to use html tags
+* [How to use html tags](https://lemontree1729.github.io/coding-academy/courses/html/d003/htmltags.html)
 
 ## What I studied myself
 
