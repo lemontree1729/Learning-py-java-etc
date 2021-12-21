@@ -62,5 +62,6 @@ class Quiz13 {
             else
                 file = new File(file, input);
         }
+        sc.close();
     }
 }
