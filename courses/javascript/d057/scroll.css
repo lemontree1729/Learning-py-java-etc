@@ -1,0 +1,35 @@
+body {
+    height: 200vh;
+}
+#section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 400px;
+}
+.contents {
+    background-image: url("src/cartoon-left.png");
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    line-height: center;
+    margin-right: 10px;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.up {
+    transform: translate(0, 100px);
+}
+.down {
+    transform: translate(0, -100px);
+}
+.right {
+    transform: translate(100px, 0);
+}
+.left {
+    transform: translate(-100px, 0);
+}
+.show {
+    opacity: 1;
+    transform: none;
+}
