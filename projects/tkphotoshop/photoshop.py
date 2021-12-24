@@ -3,7 +3,6 @@ from tkinter import Event, Variable, Widget, ttk
 import tkinter.filedialog as tkfd
 import tkinter.simpledialog as tksd
 import tkinter.messagebox as tkms
-import wand.image as wd
 from webbrowser import open_new
 from collections import deque
 
@@ -69,9 +68,7 @@ except ModuleNotFoundError:
     )
     funcExit()
 except ImportError:
-    yesorno = tkms.askyesnocancel(
-        "ImportError", "ImageMagick is not installed. Do you want to install?"
-    )
+    yesorno = tkms.askyesnocancel("ImportError", "ImageMagick is not installed. Do you want to install?")
     if yesorno:
         open_new(
             r"https://download.imagemagick.org/ImageMagick/download/binaries/ImageMagick-7.1.0-13-Q16-HDRI-x64-dll.exe"
@@ -154,9 +151,7 @@ def sett():
     print(hey.get())
 
 
-a = ttk.Spinbox(
-    window, to=20, textvariable=hey, command=sett, validate="key", validatecommand=sett
-)
+a = ttk.Spinbox(window, to=20, textvariable=hey, command=sett, validate="key", validatecommand=sett)
 hi.set(15)
 hey.set(15)
 print(hey)
