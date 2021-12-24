@@ -1,6 +1,5 @@
 import pygame as pg
 from random import randint
-
 from pygame.sprite import Group
 
 
@@ -181,7 +180,6 @@ class Ball(MovingObject):
                 if tempValue < approxValue:  # approxValue goes to wantedValue
                     approxValue = tempValue
                     accRelativePos = tempPos
-            # nv = pg.math.Vector2(x2 - x1, y2 - y1) just for simple
             reflectOriginSpd = pg.math.Vector2(self.vx, self.vy).reflect(accRelativePos)
             reflectTargetSpd = pg.math.Vector2(target.vx, target.vy).reflect(accRelativePos)
             collideOriginSpd = (originSpd + reflectOriginSpd) / 2 + (targetSpd - reflectTargetSpd) / 2
