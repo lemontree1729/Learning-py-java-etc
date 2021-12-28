@@ -7,7 +7,7 @@ class QuizOpen {
         Scanner sc = new Scanner(System.in);
         int n1, n2, cnt;
         String per1, per2;
-        String[] rpscase = { "rock", "paper", "scissors" };
+        String[] rpscase = {"rock", "paper", "scissors"};
         while (true) {
             System.out.print("first person : ");
             per1 = sc.next();

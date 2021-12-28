@@ -7,7 +7,7 @@ class Quiz03 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("ENTER ANYTHING WRONG TO QUIT!");
-        int[] degree = { 50000, 10000, 1000, 100, 50, 10, 1 };
+        int[] degree = {50000, 10000, 1000, 100, 50, 10, 1};
         int price;
         while (true) {
             try {

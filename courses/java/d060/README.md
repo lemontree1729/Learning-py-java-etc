@@ -1,18 +1,11 @@
-# 21/12/14 Java Lesson
+# 21/12/28 Java Lesson
 
 ## What I learned(Important)
- 
-* Input and output stream
-* input vs output and reader vs writer and System.in vs System.out
-    * from input, reader, and System.in, java gains data(information)
-    * from output, writer, and System.out, java has no data change and just show(or give) its data to others
-*
-    1.
-        *
-    2.
-        *
-* [$file-name.extension$]($file-name.extension$)
-    *
+
+* Network
+* TCP/IP
+* port
+* socket
 
 ## What I studied myself
 

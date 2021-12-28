@@ -3,22 +3,22 @@
 ## What I learned(Important)
 
 * for statement (example : [ForSample.java](ForSample.java), [NestedLoop.java](NestedLoop.java))
-  * how to use:
+    * how to use:
 
   ```java
   for($inital-state$ ; $condition$ ; $state-change$) {
     $action$
   }
   ```
-  
-  * statement order:  
-    1. $inital-state$
-    2. $condition$
-    3. if true: $action$ -> $state-change$, if false: **ended**
-    4. if **not ended**: go to 2.
+
+    * statement order:
+        1. $initial-state$
+        2. $condition$
+        3. if true: $action$ -> $state-change$, if false: **ended**
+        4. if **not ended**: go to 2.
 
 * while statement (example : [WhileSample.java](WhileSample.java))
-  * how to use:
+    * how to use:
 
   ```java
   while($condition$) {
@@ -27,16 +27,16 @@
   ```
 
 * do-while statement
-  * how to use:
+    * how to use:
 
   ```java
   do {
     $action code$
-  } while($condition$); // you MUST ended with semicolon!
+  } while($condition$); // you MUST end with semicolon!
   ```
 
 * continue and break
-  * how to use:
+    * how to use:
 
 * array
 
@@ -45,20 +45,20 @@
 ## What I didn't understand
 
 * what is in array reference variable?
-  * just memory location or plus array number
-  * can overwrite other memory?
+    * just memory location or plus array number
+    * can overwrite other memory?
 
 ## What I want to know more
 
 ## etc(Additional)
 
 ## Practice problems
-
-### ([Quiz01.java](Quiz01.java)) Sum 1~99 for diffrent ways
+ 
+### ([Quiz01.java](Quiz01.java)) Sum 1~99 for different ways
 
 ![image of Quiz01.java](./img/quiz01.PNG)
 
-### ([Quiz02.java](Quiz02.java)) Make specific two dimensional array
+### ([Quiz02.java](Quiz02.java)) Make specific two-dimensional array
 
 ![image of Quiz02.java](./img/quiz02.PNG)
 
