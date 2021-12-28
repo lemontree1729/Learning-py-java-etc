@@ -9,7 +9,7 @@ class ServerEx {
         var sc = new Scanner(System.in);
         try {
             System.out.println("waiting for connect...");
-            var socket = new ServerSocket(9999).accept();
+            var socket = new ServerSocket(8888).accept();
             System.out.println("connected");
             var in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             var out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
