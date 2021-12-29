@@ -32,26 +32,26 @@ class Quiz12 {
                     System.out.println("wrong operator!");
                 }
                 switch (op) { // switch statement
-                case "+":
-                    System.out.println(a + " " + op + " " + b + " = " + (a + b));
-                    break;
-                case "-":
-                    System.out.println(a + " " + op + " " + b + " = " + (a - b));
-                    break;
-                case "*":
-                    System.out.println(a + " " + op + " " + b + " = " + (a * b));
-                    break;
-                case "/":
-                    switch (b) {
-                    case 0:
-                        System.out.println(a + " " + op + " " + b + " = INF");
+                    case "+":
+                        System.out.println(a + " " + op + " " + b + " = " + (a + b));
+                        break;
+                    case "-":
+                        System.out.println(a + " " + op + " " + b + " = " + (a - b));
+                        break;
+                    case "*":
+                        System.out.println(a + " " + op + " " + b + " = " + (a * b));
+                        break;
+                    case "/":
+                        switch (b) {
+                            case 0:
+                                System.out.println(a + " " + op + " " + b + " = INF");
+                                break;
+                            default:
+                                System.out.println(a + " " + op + " " + b + " = " + ((double) a / b));
+                        }
                         break;
                     default:
-                        System.out.println(a + " " + op + " " + b + " = " + ((double) a / b));
-                    }
-                    break;
-                default:
-                    System.out.println("wrong operator!");
+                        System.out.println("wrong operator!");
                 }
             } catch (InputMismatchException ime) {
                 System.out.println("program closed");

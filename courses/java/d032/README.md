@@ -18,7 +18,4 @@
 
 ## Practice problems
 
-* [$file-name1.extension1$]($file-name1.extension1$)
-* [$file-name2.extension2$]($file-name2.extension2$)
-
 ## Useful links

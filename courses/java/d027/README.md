@@ -2,15 +2,15 @@
 
 ## What I learned(Important)
 
-* [Method overriding](MethodOverridingEx.java)] :
-  * Relation: Inheritance class
-  * How to bind: bind to sub class
-  * Condition: same method name, parameter type, parameter number and return type
-  * [you can stop overriding with using `super.$method-name$`](Sample.java)
+* [Method overriding](MethodOverridingEx.java) :
+    * Relation: Inheritance class
+    * How to bind: bind to subclass
+    * Condition: same method name, parameter type, parameter number and return type
+    * [you can stop overriding with using `super.$method-name$`](Sample.java)
 * Method overloading :
-  * Relation: Same class or Inheritance class
-  * How to bind: bind that has same parameter type
-  * Condition: same method name and different parameter type or number
+    * Relation: Same class or Inheritance class
+    * How to bind: bind that has same parameter type
+    * Condition: same method name and different parameter type or number
 
 ## What I studied myself
 
@@ -25,4 +25,4 @@
 ## Useful links
 
 * for method overriding
-<https://wiserloner.tistory.com/1387>
+  <https://wiserloner.tistory.com/1387>

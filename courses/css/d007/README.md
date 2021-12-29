@@ -1,7 +1,7 @@
 # 21/10/14 CSS lesson
 
 ## What I learned(Important)
-
+ 
 * [How to use css tags](csstags.css) ([view](https://lemontree1729.github.io/coding-academy/courses/css/d007/csstags.html))
 
 ## What I studied myself

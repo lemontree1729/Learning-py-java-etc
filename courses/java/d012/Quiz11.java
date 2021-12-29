@@ -27,18 +27,18 @@ class Quiz11 {
                         System.out.println("Winter");
                     }
                     switch (month % 12 / 3) { // using switch statement
-                    case 0:
-                        System.out.println("Winter");
-                        break;
-                    case 1:
-                        System.out.println("Spring");
-                        break;
-                    case 2:
-                        System.out.println("Summer");
-                        break;
-                    case 3:
-                        System.out.println("Fall");
-                        break;
+                        case 0:
+                            System.out.println("Winter");
+                            break;
+                        case 1:
+                            System.out.println("Spring");
+                            break;
+                        case 2:
+                            System.out.println("Summer");
+                            break;
+                        case 3:
+                            System.out.println("Fall");
+                            break;
                     }
                 }
             } catch (InputMismatchException ime) {
