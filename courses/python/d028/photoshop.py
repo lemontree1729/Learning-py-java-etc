@@ -1,7 +1,6 @@
 import tkinter as tk
 import tkinter.filedialog as tkfd
 import tkinter.simpledialog as tksd
-import wand.image as wd
 import tkinter.messagebox as tkms
 from webbrowser import open_new
 from collections import deque
