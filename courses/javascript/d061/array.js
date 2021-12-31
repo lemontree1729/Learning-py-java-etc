@@ -127,21 +127,21 @@ const words = [
 words.filter(v => v.includes("a")).forEach(v => console.log(v))
 
 
-// const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline'
-// fetch(API_URL)
-//     .then(function (res) {
-//         return res.json()
-//     })
-//     .then(function (products) {
-//         //practice6
-//         products
-//             .filter(v => v.product_type === "mascara" && v.price < 10)
-//             .forEach(v => console.log(v))
-//         //practice7
-//         products
-//             .filter(v => v.product_type === "lipstick" && 4 < v.rating && v.rating < 5)
-//             .forEach(v => console.log(v))
-//     })
+const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline'
+fetch(API_URL)
+    .then(function (res) {
+        return res.json()
+    })
+    .then(function (products) {
+        //practice6
+        products
+            .filter(v => v.product_type === "mascara" && v.price < 10)
+            .forEach(v => console.log(v))
+        //practice7
+        products
+            .filter(v => v.product_type === "lipstick" && 4 < v.rating && v.rating < 5)
+            .forEach(v => console.log(v))
+    })
 
 //practice8
 const friends = [
