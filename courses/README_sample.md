@@ -1,9 +1,9 @@
-# 21/12/01 $lesson-name$
+# 22/01/01 $lesson-name$
 
 ## What I learned(Important)
 
 *
-  *
+    *
 *
     1.
         *
@@ -15,13 +15,13 @@
 ## What I studied myself
 
 *
-  *
+    *
 * .... (Studying)
-  *
+    *
 *
 *
 * .... (Studied)
-  *
+    *
 
 ## What I didn't understand
 
@@ -32,7 +32,7 @@
 ## What I want to know more
 
 * .... (Solving)
-  *
+    *
 * .... (Solved)
 
 ## etc(Additional)
