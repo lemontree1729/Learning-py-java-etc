@@ -1,31 +1,25 @@
-import fetch from "node-fetch"
+// @ts-ignore
+// import fetch from "node-fetch"
 
 const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline'
 
-function buildElement(product) {
+function buildElement(product: any) {
     const myproduct = document.createElement("div")
     myproduct.classList.add("product")
     myproduct.innerHTML = `
-<div class="product-img"><img></div>
-<div class="product-name"></div>
-<div class="product-description"></div>`
-    myproduct.querySelector<HTMLImageElement>(".product-img>img")!.src = product.image_link
-    myproduct.querySelector<HTMLElement>(".product-name")!.innerHTML = `${product.name}($${product.price})`
-    myproduct.querySelector<HTMLElement>(".product-description")!.innerHTML = product.description
+<div class="product-img"><img src="${product?.image_link}"></div>
+<div class="product-name">${product?.name}($${product?.price})</div>
+<div class="product-description">${product?.description}</div>`
     return myproduct
 }
 
-function displayProduct(product) {
+function displayProduct(product: HTMLDivElement) {
     document.getElementById("root")!.append(product)
 }
 
 fetch(API_URL)
-    .then(function (res) {
-        console.log(res.json())
-        return res.json()
-    })
-    .then(function (products) {
+    .then((res: Response) => res.json())
+    .then((products: any) => {
         console.log(products)
-        const productsRefined = products.map(buildElement)
-        productsRefined.forEach(displayProduct)
+        products.map(buildElement).forEach(displayProduct)
     })
