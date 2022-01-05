@@ -222,9 +222,6 @@ class Bat(MovingObject):
         self.rect = self.image.get_rect()
         self.rect.center = temp
 
-    def draw(self, surface):
-        surface.blit(self.image, self.rect)
-
 
 class BorderLine(MovingObject):
     def __init__(self, direction="vertical", pos=1, thickness=1, color=None, surface=None):
