@@ -13,8 +13,9 @@ function buildElements(product) {
     myproduct.innerHTML = `
 <div class="product-img"><img src="${product === null || product === void 0 ? void 0 : product.image_link}"></div>
 <div class="product-name">${product === null || product === void 0 ? void 0 : product.name}($${product === null || product === void 0 ? void 0 : product.price})</div>
-<div class="product-description">${product === null || product === void 0 ? void 0 : product.description}</div>`;
-    products.push({ value: myproduct, name: product.name, price: product.price });
+<div class="product-description">${product === null || product === void 0 ? void 0 : product.description}</div>
+<div class="product-type">${product === null || product === void 0 ? void 0 : product.product_type}</div>`;
+    products.push({ value: myproduct, product_type: product.product_type, price: product.price });
     return myproduct;
 }
 function replaceElement(product) {
@@ -34,7 +35,7 @@ priceBtn.addEventListener("click", () => {
 });
 searchInput.addEventListener("input", () => {
     const reg = new RegExp(searchInput.value, "i");
-    filtered = products.filter((v) => v.name.match(reg));
+    filtered = products.filter((v) => v.product_type.match(reg));
     replaceElement(filtered);
     sign = 1;
 });

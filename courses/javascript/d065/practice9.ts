@@ -9,7 +9,7 @@ const searchInput = <HTMLInputElement>document.getElementById("search-input")!
 
 type Product = {
     value: any
-    name: string
+    product_type: string
     price: number
 }
 
@@ -19,8 +19,9 @@ function buildElements(product: any) {
     myproduct.innerHTML = `
 <div class="product-img"><img src="${product?.image_link}"></div>
 <div class="product-name">${product?.name}($${product?.price})</div>
-<div class="product-description">${product?.description}</div>`
-    products.push({value: myproduct, name: product.name, price: product.price})
+<div class="product-description">${product?.description}</div>
+<div class="product-type">${product?.product_type}</div>`
+    products.push({value: myproduct, product_type: product.product_type, price: product.price})
     return myproduct
 }
 
@@ -44,7 +45,7 @@ priceBtn.addEventListener("click", () => {
 
 searchInput.addEventListener("input", () => {
     const reg = new RegExp(searchInput.value, "i")
-    filtered = products.filter((v: Product) => v.name.match(reg))
+    filtered = products.filter((v: Product) => v.product_type.match(reg))
     replaceElement(filtered)
     sign = 1
 })
