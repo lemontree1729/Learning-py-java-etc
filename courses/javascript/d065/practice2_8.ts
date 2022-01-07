@@ -51,3 +51,4 @@ const movies = [
     {title: 'Spider man', release: '2017-03-07'}
 ]
 console.log([...movies].sort((a, b) => -a.release.localeCompare(b.release)))
+// console.log([...movies].sort((a, b) => Date.parse(b.release) - Date.parse(a.release)))
