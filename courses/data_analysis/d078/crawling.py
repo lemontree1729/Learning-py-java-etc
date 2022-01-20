@@ -5,15 +5,14 @@ import requests
 import time
 
 
-def html_parser(url, delay=0, headless=False, dynamic=True, log_level=0):
+def html_parser(url, delay=0, headless=False, dynamic=True):
     if not dynamic:
         return BeautifulSoup(requests.get(url).text, "html.parser")
     options = webdriver.ChromeOptions()
     if headless:
         options.add_argument("headless")
     try:
-        # silencing log not working
-        driver = webdriver.Chrome(ChromeDriverManager(log_level=log_level).install(), options=options)
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         driver.get(url)
         time.sleep(delay)
         source = driver.page_source
