@@ -19,8 +19,8 @@ body {
 }
 
 .dot {
-    width: 5px; /* 그래프 선의 굵기 설정 */
-    height: 5px;
+    width: 4px; /* 그래프 선의 굵기 설정 */
+    height: 4px;
     border-radius: 50%;
     background: greenyellow;
     position: absolute;
