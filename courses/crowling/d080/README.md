@@ -1,4 +1,4 @@
-# 22/01/15 Crowling Lesson
+# 22/01/22 Crowling Lesson
 
 ## What I learned(Important)
 
@@ -9,8 +9,6 @@
 ## What I want to know more
 
 ## etc(Additional)
-
-* find get and post request : <https://httpbin.org/>
 
 ## Practice problems
 
