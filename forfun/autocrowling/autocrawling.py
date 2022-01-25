@@ -12,7 +12,6 @@ class Selector:
             pass
 
     def get_selector(html, tag):
-
         pass
 
     def parse_selector(selector):
@@ -74,45 +73,68 @@ def show_tag(selector):
 
 
 html = html_parser(
-    "https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8", dynamic=False
+    "https://ko.wikipedia.org/wiki/%ED%8A%B9%EC%88%98:%EC%B5%9C%EA%B7%BC%EB%B0%94%EB%80%9C?hidebots=1&hidecategorization=1&hideWikibase=1&limit=50&days=7&urlversion=2",
+    dynamic=False,
 )
-tag = html.select_one("p")
-print(tag in html)
 
-while False:
-    toggle_menu = input("1:move url, 2:find data>>")
-    if toggle_menu == "1":
-        parsed_html = html_parser(input("url to move>>"), 5)
-    elif toggle_menu == "2":
-        data = []
-        toggle_data = input("1:string, 2:css tag>>")
-        if toggle_data == "1":
-            keyword = input("enter string to find>>")
-            finded_datas = parsed_html.find_all(text=re.compile(keyword))
-            css_tags = set()
-            for finded_data in finded_datas:
-                selector = get_selector(finded_data)
-                if selector:
-                    css_tags.add(selector)
-            css_tags = list(css_tags)
-            print(f"{len(css_tags)} css_tags found")
-            for cnt in range(len(css_tags)):
-                print(f"css_tag{cnt}: {css_tags[cnt]}")
-                similerdata = get_text(parsed_html.select(css_tags[cnt]))
-                print("similer data-----", *similerdata[: min(len(similerdata), 15)], sep="\n")
-                data.extend(similerdata)
+# html = html_parser("https://namu.wiki/RecentChanges", delay=5)
 
-            # datatype = input("enter data type to show>>")
-            # if datatype == "text":
-            #     func = get_text
-            # else:
-            #     func = lambda x: x.attrs.get(datatype, "")
-            # for css_tag in css_tags:
-            #     data.extend(list(map(func, parsed_html.select(css_tag))))
-        if toggle_data == "2":
-            keyword = input("enter css tag to find>>")
-            finded_datas = parsed_html.select(keyword)
-        # print(data)
-    else:
-        print("wrong input!")
+
+def printTree(tree, maxcount=10, rank=[], end=True):
+    sign = "├─"
+    if end:
+        sign = "└─"
+    for i in rank:
+        if i == 1:
+            print("│  ")
+        else:
+            print("   ")
+    if type(tree) in (str or int):
+        print(f"{sign}{tree}")
+        return
+    foo = None
+    print(f"{sign}{tree}")
+    if hasattr(tree, "popitem"):
+        foo = lambda x: x.popitem()[0]
+    elif hasattr(tree, "pop"):
+        foo = lambda x: x.pop()
+    while (len(tree)>1):
+
+
+    if len(tree) == 1:
+        print(f"└─")
+    for i in len(tree):
+        if i == len(tree) - 1:
+            sign = "└─"
+        if type(tree[i]) is str or int:
+            printTree(tree, maxcount, rank, end)
+        else:
+            if 1:
+                pass
+
+
+from collections import Counter
+
+a = Counter([1, 2, 3, 4, 1, 2, 1, 2, 1, 2, 2, 2, 3, 1, 1, 11, 1, 1])
+print(a)
+print(a.most_common())
+
+
+common_selector = Counter(map(get_selector, html.select("*"))).most_common(10)
+for selector in common_selector:
+    target_selector = get_text(html.select(selector[0]))
+    print(f"├─{selector[0]}({selector[1]})")
+    for i in range(len(target_selector)):
+        if i in (9, len(target_selector)):
+            print(f"│  └─{target_selector[i]}")
+            break
+        print(f"│  ├─{target_selector[i]}")
+classes = []
+for element in html.find_all(class_=True):
+    classes.extend(element["class"])
+common_class = Counter(classes).most_common(10)
+for class_ in common_class:
+    target_class = get_text(html.find_all(class_=class_[0]))
+    print(f"├─{class_[0]}({class_[1]})")
+    print("│  ├─", *target_class[: min(10, len(target_class))], sep="\n│  ├─")
 
