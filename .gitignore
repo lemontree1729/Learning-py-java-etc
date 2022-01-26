@@ -11,3 +11,5 @@
 **/.venv
 
 learning_rust/target
+
+*.jar
