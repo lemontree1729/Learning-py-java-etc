@@ -1,4 +1,4 @@
-# 22/01/22 JSP Lesson
+# 22/01/24 JSP Lesson
 
 ## What I learned(Important)
 
@@ -7,7 +7,7 @@
     * dynamic web page: can be different for different visitors
 * what is JSP?
 * run apache tomcat server with jsp
-* [JSP tags](web/index.jsp)
+* [JSP tags](index.jsp)
 
 ## What I studied myself
 
