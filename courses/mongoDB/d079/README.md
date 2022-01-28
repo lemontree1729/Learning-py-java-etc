@@ -18,6 +18,11 @@
 * how to unbind ip(allow remote access):
     * open file `$mongoDB-path$/mongod.cfg` and change
 
+* mongoDB query
+    * insertOne and insertMany
+    * deleteOne and deleteMany
+    *
+
 ## What I didn't understand
 
 * how to save queries in mongodb?(like .sql)
