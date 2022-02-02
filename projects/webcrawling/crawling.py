@@ -4,6 +4,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import requests
 import time
+import datetime
 
 
 def html_parser(url: str, delay=0, headless=False, dynamic=True, log_level=0):
@@ -36,3 +37,26 @@ def get_text(target: Tag, recursive=True):
         return list(map(get_text, target))
     except:
         return ""
+
+
+class ProgressBar:
+    def __init__(self, length, division=50, style="="):
+        self.count = 0
+        self.length = length
+        self.division = division
+        self.style = style
+        self.start = time.time()
+
+    def next(self):
+        self.count += 1
+        bar = int(self.count / self.length * self.division)
+        percent = int(self.count / self.length * 100)
+        self.end = time.time()
+        average_time = (self.end - self.start) / self.count
+        eta = datetime.timedelta(seconds=int(average_time * (self.length - self.count)))
+        print(
+            f"process: [{self.style*bar}{' '*(self.division-bar)}] | {percent:3d}% | {self.count}/{self.length} | eta: {eta}",
+            end="\r",
+        )
+        if self.count == self.length:
+            print(f"\ntook {datetime.timedelta(seconds=self.end - self.start)}")
