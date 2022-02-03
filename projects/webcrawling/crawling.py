@@ -40,11 +40,11 @@ def get_text(target: Tag, recursive=True):
 
 
 class ProgressBar:
-    def __init__(self, length, division=50, style="="):
+    def __init__(self, length, division=50, fill="="):
         self.count = 0
         self.length = length
         self.division = division
-        self.style = style
+        self.fill = str(fill)
         self.start = time.time()
 
     def next(self):
@@ -55,7 +55,7 @@ class ProgressBar:
         average_time = (self.end - self.start) / self.count
         eta = datetime.timedelta(seconds=int(average_time * (self.length - self.count)))
         print(
-            f"process: [{self.style*bar}{' '*(self.division-bar)}] | {percent:3d}% | {self.count}/{self.length} | eta: {eta}",
+            f"process: [{self.fill*bar}{' '*(self.division-bar)}] | {percent:3d}% | {self.count}/{self.length} | eta: {eta}",
             end="\r",
         )
         if self.count == self.length:
