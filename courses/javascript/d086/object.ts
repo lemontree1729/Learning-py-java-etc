@@ -39,6 +39,7 @@ class BookStore extends Book {
         }
     }
 }
+
 const book1 = new (BookStore as any)(
     'javascript',
     21000,
