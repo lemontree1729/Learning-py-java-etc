@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import requests
 import time
 import datetime
+from urllib import parse
 
 
 def html_parser(url: str, delay=0, headless=False, dynamic=True, log_level=0):
@@ -60,3 +61,14 @@ class ProgressBar:
         )
         if self.count == self.length:
             print(f"\ntook {datetime.timedelta(seconds=self.end - self.start)}")
+
+
+def get_url_query(url):
+    return dict(parse.parse_qsl(parse.urlparse(url).query))
+
+
+def set_url_query(url, new_query):
+    query = get_url_query(url)
+    for key, value in new_query.items():
+        query[key] = value
+    return parse.urlunparse(parse.urlparse(url)._replace(query=parse.urlencode(query)))
