@@ -63,12 +63,29 @@ class ProgressBar:
             print(f"\ntook {datetime.timedelta(seconds=self.end - self.start)}")
 
 
+def replace_url(url, initialize=False, **kwargs):
+    if initialize:
+        url = parse.urljoin(url, "/")
+    return parse.urlunparse(parse.urlparse(url)._replace(**kwargs))
+
+
 def get_url_query(url):
     return dict(parse.parse_qsl(parse.urlparse(url).query))
 
 
 def set_url_query(url, new_query):
-    query = get_url_query(url)
-    for key, value in new_query.items():
+    if type(new_query) == str:
+        return replace_url(url, query=new_query)
+    if type(new_query) == dict:
+        new_query = new_query.items()
+    query = parse.parse_qs(parse.urlparse(url).query)
+    for key, value in new_query:
         query[key] = value
-    return parse.urlunparse(parse.urlparse(url)._replace(query=parse.urlencode(query)))
+    return replace_url(url, query=parse.urlencode(query, doseq=True))
+
+
+def dict_filter(data: dict, *args):
+    filtered_dict = {}
+    for arg in args:
+        filtered_dict[arg] = data.get(arg)
+    return filtered_dict
