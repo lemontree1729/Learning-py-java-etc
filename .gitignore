@@ -12,4 +12,6 @@
 
 learning_rust/target
 
+**/node_modules
+
 *.jar
