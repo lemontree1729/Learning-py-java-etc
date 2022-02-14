@@ -1,4 +1,4 @@
-var express = require('express') // node_modules 내 express 관련 코드를 가져온다
+var express = require('express')
 var app = express()
 var cors = require('cors')
 var logger = require('morgan')
@@ -9,7 +9,7 @@ var corsOptions = { // CORS 옵션
     origin: 'http://localhost:3000',
     credentials: true
 }
-const CONNECT_URL = 'mongodb://localhost:27017/syleemomo'
+const CONNECT_URL = 'mongodb://localhost:27017/test'
 mongoose.connect(CONNECT_URL, { // Mongo DB 서버 연결
     useNewUrlParser: true,
     useUnifiedTopology: true
