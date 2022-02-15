@@ -23,6 +23,7 @@
                 <%=tagline%>
             </h3>
             <%
+                response.setIntHeader("Refresh", 5);
                 out.print(new java.util.Date());
             %>
         </div>
