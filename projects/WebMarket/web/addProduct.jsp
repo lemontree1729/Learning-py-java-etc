@@ -1,10 +1,7 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.lang.reflect.Array" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>    <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">--%>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<head>
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
     <title>Add product</title>
 </head>
 <body>
@@ -15,7 +12,10 @@
     </div>
 </div>
 <div class="container">
-    <form name="newProduct" action="processAddProduct.jsp" class="form-horizontal" method="post">
+    <div class="text-right">
+        <a href="logout.jsp" class="btn btn-sm btn-success pull-right">logout</a>
+    </div>
+    <form name="newProduct" action="./processAddProduct.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <label class="col-sm-2">Product id</label>
             <div class="col-sm-3">
@@ -70,6 +70,12 @@
             <label class="col-sm-2"></label>
             <div class="col-sm-offset-2 col-sm-10">
                 <input type="submit" class="btn btn-primary" value="submit">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">image</label>
+            <div class="col-md-5">
+                <input type="file" name="productImage" class="form-control">
             </div>
         </div>
     </form>

@@ -8,6 +8,10 @@
 
 **/.idea
 
+**/out
+
+**/web/resources
+
 **/.venv
 
 learning_rust/target
@@ -15,5 +19,3 @@ learning_rust/target
 **/node_modules
 
 *.jar
-
-**/out
